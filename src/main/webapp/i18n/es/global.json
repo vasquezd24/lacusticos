@@ -7,6 +7,12 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entidades",
+        "category": "Categorías",
+        "product": "Productos",
+        "location": "Ubicaciones",
+        "subscriptor": "Suscriptores",
+        "entrepreneur": "Emprendimiento",
+        "deliveryPlatform": "Plataformas de envio",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -20,7 +26,7 @@
       },
       "admin": {
         "main": "Administración",
-        "userManagement": "Gestión de usuarios",
+        "userManagement": "Usuarios",
         "tracker": "Registro de usuarios",
         "metrics": "Métricas",
         "health": "Salud",
@@ -34,16 +40,18 @@
       "language": "Idioma"
     },
     "form": {
-      "username.label": "Usuario",
-      "username.placeholder": "Nombre de usuario",
+      "name.label": "Nombre",
+      "name.placeholder": "Ingrese el nombre",
+      "last.name.label": "Apellido",
+      "last.name.placeholder": "Ingrese el apellido",
       "currentpassword.label": "Contraseña actual",
-      "currentpassword.placeholder": "Contraseña actual",
+      "currentpassword.placeholder": " Ingrese la contraseña actual",
       "newpassword.label": "Nueva contraseña",
-      "newpassword.placeholder": "Nueva contraseña",
+      "newpassword.placeholder": "Ingrese la nueva contraseña",
       "confirmpassword.label": "Confirmación de la nueva contraseña",
-      "confirmpassword.placeholder": "Confirmación de la nueva contraseña",
+      "confirmpassword.placeholder": "Ingrese la confirmación de la nueva contraseña",
       "email.label": "Correo electrónico",
-      "email.placeholder": "Su correo electrónico"
+      "email.placeholder": "Ingrese el correo electrónico"
     },
     "messages": {
       "info": {

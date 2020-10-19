@@ -1,7 +1,9 @@
 {
   "login": {
-    "title": "Iniciar la sesión",
+    "title": "Bienvenido",
     "form": {
+      "email": "Correo electrónico",
+      "email.placeholder": "Su correo electrónico",
       "password": "Contraseña",
       "password.placeholder": "Su contraseña",
       "rememberme": "Iniciar la sesión automáticamente",
@@ -9,11 +11,11 @@
     },
     "messages": {
       "error": {
-        "authentication": "<strong>¡El inicio de sesión ha fallado!</strong> Por favor, revise las credenciales e intente de nuevo."
+        "authentication": "<strong>¡El inicio de sesión fallido!</strong> Por favor, revise las credenciales."
       }
     },
     "password": {
-      "forgot": "¿Ha olvidado su contraseña?"
+      "forgot": "Restablecer contraseña"
     }
   }
 }

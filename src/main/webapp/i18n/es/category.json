@@ -1,0 +1,29 @@
+{
+  "lacusticoApp": {
+    "category": {
+      "home": {
+        "title": "Categorías",
+        "createLabel": "Crear una nueva categoría",
+        "createOrEditLabel": "Categoría",
+        "notFound": "Ningúna categoría ha sido encontrada"
+      },
+      "created": "Categoría creada.",
+      "updated": "Categoría modificada.",
+      "deleted": "Categoría eliminada.",
+      "delete": {
+        "question": "¿Seguro que quiere eliminarlo?"
+      },
+      "detail": {
+        "title": "Categoría"
+      },
+      "description": "Descripción",
+      "activated": "Estado",
+      "type": "Tipo",
+      "active": "Activo",
+      "inactive": "Inactivo",
+      "description.placeholder": "Ingrese la descripción",
+      "typeprod": "Producto",
+      "typeemp": "Emprendimiento"
+    }
+  }
+}

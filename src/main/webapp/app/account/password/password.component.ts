@@ -37,9 +37,16 @@ export class PasswordComponent implements OnInit {
       this.doNotMatch = true;
     } else {
       this.passwordService.save(newPassword, this.passwordForm.get(['currentPassword'])!.value).subscribe(
-        () => (this.success = true),
+        () => this.onSaveSuccess(),
         () => (this.error = true)
       );
     }
+  }
+  previousState(): void {
+    window.history.back();
+  }
+  protected onSaveSuccess(): void {
+    this.success = true;
+    this.previousState();
   }
 }

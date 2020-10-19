@@ -7,6 +7,12 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "category": "Category",
+        "product": "Product",
+        "location": "Location",
+        "subscriptor": "Subscriptor",
+        "entrepreneur": "Entrepreneur",
+        "deliveryPlatform": "Delivery Platform",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -20,7 +26,7 @@
       },
       "admin": {
         "main": "Administration",
-        "userManagement": "User management",
+        "userManagement": "Users",
         "tracker": "User tracker",
         "metrics": "Metrics",
         "health": "Health",
@@ -34,8 +40,10 @@
       "language": "Language"
     },
     "form": {
-      "username.label": "Username",
-      "username.placeholder": "Your username",
+      "name.label": "Name",
+      "name.placeholder": "Your name",
+      "last.name.label": "Last name",
+      "last.name.placeholder": "Your last name",
       "currentpassword.label": "Current password",
       "currentpassword.placeholder": "Current password",
       "newpassword.label": "New password",

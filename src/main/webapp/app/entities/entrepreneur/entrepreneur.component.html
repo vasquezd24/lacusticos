@@ -1,0 +1,72 @@
+<div>
+    <h2 id="page-heading" class="text-center pb-4">
+        <span jhiTranslate="lacusticoApp.entrepreneur.home.title">Entrepreneurs</span>
+        <button id="jh-create-entity" class="btn btn-outline-success float-right jh-create-entity create-entrepreneur" [routerLink]="['/entrepreneur/new']">
+            <fa-icon icon="plus"></fa-icon>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="entrepreneurs?.length === 0">
+        <span jhiTranslate="lacusticoApp.entrepreneur.home.notFound">No entrepreneurs found</span>
+    </div>
+
+    <div class="table-responsive table-hover table-scroll-custom" id="entities" *ngIf="entrepreneurs && entrepreneurs.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="lacusticoApp.entrepreneur.picture">Picture</span></th>
+                    <th scope="col" ><span jhiTranslate="lacusticoApp.entrepreneur.name">Name</span></th>
+                    <th scope="col" ><span jhiTranslate="lacusticoApp.entrepreneur.email">Email</span></th>
+                    <th scope="col" ><span jhiTranslate="lacusticoApp.entrepreneur.phoneNumber">Phone Number</span></th>
+                    <th scope="col" ><span jhiTranslate="lacusticoApp.entrepreneur.category">Category</span></th>
+                    <th scope="col" ><span jhiTranslate="lacusticoApp.entrepreneur.activated">Activated</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let entrepreneur of entrepreneurs ;trackBy: trackId">
+                    <td>
+                        <a *ngIf="entrepreneur.picture" (click)="openFile(entrepreneur.pictureContentType, entrepreneur.picture)">
+                            <img [src]="'data:' + entrepreneur.pictureContentType + ';base64,' + entrepreneur.picture" style="max-height: 30px;" alt="entrepreneur image"/>
+                        </a>
+                    </td>
+                    <td><a [routerLink]="['/entrepreneur', entrepreneur.id, 'view']">{{ entrepreneur.name }}</a></td>
+                    <td>{{ entrepreneur.email }}</td>
+                    <td>{{ entrepreneur.phoneNumber }}</td>
+                    <td><div *ngIf="entrepreneur.category">{{ entrepreneur.category?.description }}</div></td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" (click)="setActive(entrepreneur, true)" *ngIf="!entrepreneur.activated"
+                                jhiTranslate="lacusticoApp.entrepreneur.inactive">Deactivated
+                        </button>
+                        <button class="btn btn-success btn-sm" (click)="setActive(entrepreneur, false)" *ngIf="entrepreneur.activated"
+                                jhiTranslate="lacusticoApp.entrepreneur.active">Activated
+                        </button>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/entrepreneur', entrepreneur.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/entrepreneur', entrepreneur.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                            </button>
+
+                            <button type="submit" (click)="delete(entrepreneur)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="entrepreneur">
+            <h2><span jhiTranslate="lacusticoApp.entrepreneur.detail.title">Entrepreneur</span> {{ entrepreneur.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="lacusticoApp.entrepreneur.email">Email</span></dt>
+                <dd>
+                    <span>{{ entrepreneur.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.entrepreneur.name">Name</span></dt>
+                <dd>
+                    <span>{{ entrepreneur.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.entrepreneur.description">Description</span></dt>
+                <dd>
+                    <span>{{ entrepreneur.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.entrepreneur.phoneNumber">Phone Number</span></dt>
+                <dd>
+                    <span>{{ entrepreneur.phoneNumber }}</span>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.entrepreneur.schedule">Schedule</span></dt>
+                <dd>
+                    <span>{{ entrepreneur.schedule }}</span>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.entrepreneur.picture">Picture</span></dt>
+                <dd>
+                    <div *ngIf="entrepreneur.picture">
+                        <a (click)="openFile(entrepreneur.pictureContentType, entrepreneur.picture)">
+                            <img [src]="'data:' + entrepreneur.pictureContentType + ';base64,' + entrepreneur.picture" style="max-width: 100%;" alt="entrepreneur image"/>
+                        </a>
+                        {{ entrepreneur.pictureContentType }}, {{ byteSize(entrepreneur.picture) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.entrepreneur.webSite">Web Site</span></dt>
+                <dd>
+                    <span>{{ entrepreneur.webSite }}</span>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.entrepreneur.facebookPage">Facebook Page</span></dt>
+                <dd>
+                    <span>{{ entrepreneur.facebookPage }}</span>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.entrepreneur.instagramPage">Instagram Page</span></dt>
+                <dd>
+                    <span>{{ entrepreneur.instagramPage }}</span>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.entrepreneur.activated">Activated</span></dt>
+                <dd>
+                    <span>{{ entrepreneur.activated }}</span>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.entrepreneur.category">Category</span></dt>
+                <dd>
+                    <div *ngIf="entrepreneur.category">
+                        <a [routerLink]="['/category', entrepreneur.category?.id, 'view']">{{ entrepreneur.category?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.entrepreneur.user">User</span></dt>
+                <dd>
+                    {{ entrepreneur.user?.id }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/entrepreneur', entrepreneur.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

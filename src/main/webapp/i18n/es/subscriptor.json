@@ -1,0 +1,24 @@
+{
+  "lacusticoApp": {
+    "subscriptor": {
+      "home": {
+        "title": "Subscriptors",
+        "createLabel": "Crear nuevo Subscriptor",
+        "createOrEditLabel": "Crear o editar Subscriptor",
+        "notFound": "Ningún Subscriptors encontrado"
+      },
+      "created": "Un nuevo Subscriptor ha sido creado con el identificador {{ param }}",
+      "updated": "Un Subscriptor ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Subscriptor ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Subscriptor {{ id }}?"
+      },
+      "detail": {
+        "title": "Subscriptor"
+      },
+      "email": "Email",
+      "activated": "Activated",
+      "entrepreneur": "Entrepreneur"
+    }
+  }
+}

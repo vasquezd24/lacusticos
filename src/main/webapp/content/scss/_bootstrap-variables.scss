@@ -4,3 +4,61 @@
 * https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss can be overwritten here
 * Make sure not to add !default to values here
 */
+
+$verde: #00a08a;
+$azul: #011627;
+$blanco: #fdfffc;
+$papaya: #ff5e5b;
+$rosa: #cc3363;
+$yellow: #ffc105;
+$cyan: #17a2b8;
+$red: #dc3545;
+
+$primary: $azul;
+$secondary: $papaya;
+$success: $verde;
+$info: $cyan; //no
+$warning: $yellow; //no
+$danger: $red; //no
+$light: $blanco;
+$dark: $rosa;
+
+$theme-colors: ();
+$theme-colors: map-merge(
+  (
+    'primary': $primary,
+    'secondary': $secondary,
+    'success': $success,
+    'info': $info,
+    'warning': $warning,
+    'danger': $danger,
+    'light': $light,
+    'dark': $dark,
+  ),
+  $theme-colors
+);
+
+$input-border-color: $azul;
+
+.table-scroll-custom {
+  overflow-y: auto;
+  height: 635px;
+}
+
+.table-scroll-custom table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.table-scroll-custom table th {
+  text-align: left;
+  top: 0;
+  position: sticky;
+  background-color: white;
+  border: none;
+}
+
+$custom-file-text: (
+  en: 'Browse',
+  es: 'Elegir',
+);

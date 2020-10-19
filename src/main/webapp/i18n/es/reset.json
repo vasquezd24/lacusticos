@@ -1,9 +1,9 @@
 {
   "reset": {
     "request": {
-      "title": "Restablecer su contraseña",
+      "title": "Restablecer contraseña",
       "form": {
-        "button": "Restablecer la contraseña"
+        "button": "Restablecer contraseña"
       },
       "messages": {
         "info": "Introduzca la dirección de correo electrónico que utilizó para registrarse",
@@ -11,9 +11,9 @@
       }
     },
     "finish": {
-      "title": "Restablecer la contraseña",
+      "title": "Cambiar contraseña",
       "form": {
-        "button": "Validar la nueva contraseña"
+        "button": "Cambiar contraseña"
       },
       "messages": {
         "info": "Elija una contraseña nueva",

@@ -1,0 +1,29 @@
+{
+  "lacusticoApp": {
+    "category": {
+      "home": {
+        "title": "Categories",
+        "createLabel": "Create a new category",
+        "createOrEditLabel": "Category",
+        "notFound": "No categories found"
+      },
+      "created": "Category created.",
+      "updated": "Category updated.",
+      "deleted": "Category deleted.",
+      "delete": {
+        "question": "Are you sure you want to delete it?"
+      },
+      "detail": {
+        "title": "Category"
+      },
+      "description": "Description",
+      "activated": "Status",
+      "type": "Type",
+      "active": "Active",
+      "inactive": "Inactive",
+      "description.placeholder": "Insert the category",
+      "typeprod": "Product",
+      "typeemp": "Entrepreneurship"
+    }
+  }
+}

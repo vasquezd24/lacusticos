@@ -1,0 +1,56 @@
+<div>
+    <h2 id="page-heading" class="text-center pb-4">
+        <span jhiTranslate="lacusticoApp.category.home.title">Categories</span>
+        <button id="jh-create-entity" class="btn btn-outline-success float-right jh-create-entity create-category"
+                [routerLink]="['/category/new']">
+            <fa-icon icon="plus"></fa-icon>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="categories?.length === 0">
+        <span jhiTranslate="lacusticoApp.category.home.notFound">No categories found</span>
+    </div>
+
+    <div class="table-responsive table-hover table-scroll-custom" id="entities" *ngIf="categories && categories.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+        <tr>
+            <th scope="col"><span jhiTranslate="lacusticoApp.category.description">Description</span></th>
+            <th scope="col"><span jhiTranslate="lacusticoApp.category.type">Type</span></th>
+            <th scope="col"><span jhiTranslate="lacusticoApp.category.activated">Activated</span></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let category of categories ;trackBy: trackId">
+            <td>{{ category.description }}</td>
+            <td>{{ category.type }}</td>
+            <td>
+                <button class="btn btn-danger btn-sm" (click)="setActive(category, true)" *ngIf="!category.activated"
+                        jhiTranslate="lacusticoApp.category.inactive">Deactivated
+                </button>
+                <button class="btn btn-success btn-sm" (click)="setActive(category, false)" *ngIf="category.activated"
+                        jhiTranslate="lacusticoApp.category.active">Activated
+                </button>
+            </td>
+            <td class="text-right">
+                <div class="btn-group">
+                    <button type="submit"
+                            [routerLink]="['/category', category.id, 'edit']"
+                            class="btn btn-primary btn-sm">
+                        <fa-icon icon="pencil-alt"></fa-icon>
+                    </button>
+
+                    <button type="submit" (click)="delete(category)"
+                            class="btn btn-danger btn-sm">
+                        <fa-icon icon="times"></fa-icon>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

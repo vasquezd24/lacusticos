@@ -1,0 +1,189 @@
+<div class="container justify-content-center pt-5">
+    <div>
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 class=" text-center pb-3" id="jhi-entrepreneur-heading"
+                jhiTranslate="lacusticoApp.entrepreneur.home.createOrEditLabel">Create or
+                edit a Entrepreneur</h2>
+            <div class="row justify-content-center pt-5">
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="col-4 my-auto pr-2"> <!--Picture-->
+                    <div class="form-group">
+                        <!--<label class="form-control-label text-center" jhiTranslate="lacusticoApp.entrepreneur.picture"
+                               for="field_picture">Picture</label>-->
+                        <div>
+                            <div>
+                                <img class="img-fluid"
+                                    [src]="'data:' + editForm.get('pictureContentType')!.value + ';base64,' + editForm.get('picture')!.value"
+                                     *ngIf="editForm.get('picture')!.value"
+                                    alt="entrepreneur image"/>
+                            </div>
+                            <div *ngIf="editForm.get('picture')!.value" class="form-text text-danger clearfix text-center pt-2 pb-2">
+                            <!--<span class="pull-left">{{ editForm.get('pictureContentType')!.value }}
+                                , {{ byteSize(editForm.get('picture')!.value) }}</span>-->
+                                <button type="button"
+                                        (click)="clearInputImage('picture', 'pictureContentType', 'file_picture')"
+                                        class="btn btn-outline-danger btn-xs ">
+                                    <fa-icon icon="times"></fa-icon>
+                                </button>
+                            </div>
+                            <div class="text-center pt-3">
+                                <input type="file" id="file_picture" (change)="setFileData($event, 'picture', true)"
+                                       accept="image/*" jhiTranslate="entity.action.addimage" class="btn-outline-success"/>
+
+                            </div>
+                        </div>
+                        <input type="hidden" class="form-control" name="picture" id="field_picture"
+                               formControlName="picture"/>
+                        <input type="hidden" class="form-control" name="pictureContentType"
+                               id="field_pictureContentType"
+                               formControlName="pictureContentType"/>
+                    </div>
+                </div>
+
+                <div class="col-8 my-auto">
+                    <div class="row">
+
+                        <div class="col-6"><!--Form p1-->
+
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="lacusticoApp.entrepreneur.name"
+                                       for="field_name">Name</label>
+                                <input type="text" class="form-control" name="name" id="field_name"
+                                       formControlName="name"/>
+                                <div
+                                    *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                                    <small class="form-text text-danger"
+                                           *ngIf="editForm.get('name')?.errors?.required"
+                                           jhiTranslate="entity.validation.required">
+                                        This field is required.
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="lacusticoApp.entrepreneur.email"
+                                       for="field_email">Email</label>
+                                <input type="text" class="form-control" name="email" id="field_email"
+                                       formControlName="email"/>
+                                <div
+                                    *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+                                    <small class="form-text text-danger"
+                                           *ngIf="editForm.get('email')?.errors?.required"
+                                           jhiTranslate="entity.validation.required">
+                                        This field is required.
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="lacusticoApp.entrepreneur.description"
+                                       for="field_description">Description</label>
+                                <input type="text" class="form-control" name="description" id="field_description"
+                                       formControlName="description"/>
+                                <div
+                                    *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
+                                    <small class="form-text text-danger"
+                                           *ngIf="editForm.get('description')?.errors?.required"
+                                           jhiTranslate="entity.validation.required">
+                                        This field is required.
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="lacusticoApp.entrepreneur.phoneNumber"
+                                       for="field_phoneNumber">Phone Number</label>
+                                <input type="number" class="form-control" name="phoneNumber" id="field_phoneNumber"
+                                       formControlName="phoneNumber"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="lacusticoApp.entrepreneur.webSite"
+                                       for="field_webSite">Web Site</label>
+                                <input type="text" class="form-control" name="webSite" id="field_webSite"
+                                       formControlName="webSite"/>
+                            </div>
+
+                        </div>
+
+                        <div class="col-6"><!--Form p1-->
+
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="lacusticoApp.entrepreneur.facebookPage"
+                                       for="field_facebookPage">Facebook Page</label>
+                                <input type="text" class="form-control" name="facebookPage" id="field_facebookPage"
+                                       formControlName="facebookPage"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="lacusticoApp.entrepreneur.instagramPage"
+                                       for="field_instagramPage">Instagram Page</label>
+                                <input type="text" class="form-control" name="instagramPage" id="field_instagramPage"
+                                       formControlName="instagramPage"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="lacusticoApp.entrepreneur.activated"
+                                       for="field_activated">Activated</label>
+                                <input type="checkbox" class="form-control" name="activated" id="field_activated"
+                                       formControlName="activated"/>
+                                <div
+                                    *ngIf="editForm.get('activated')!.invalid && (editForm.get('activated')!.dirty || editForm.get('activated')!.touched)">
+                                    <small class="form-text text-danger"
+                                           *ngIf="editForm.get('activated')?.errors?.required"
+                                           jhiTranslate="entity.validation.required">
+                                        This field is required.
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="lacusticoApp.entrepreneur.category"
+                                       for="field_category">Category</label>
+                                <select class="form-control" id="field_category" name="category"
+                                        formControlName="category">
+                                    <option [ngValue]="null"></option>
+                                    <option
+                                        [ngValue]="categoryOption.id === editForm.get('category')!.value?.id ? editForm.get('category')!.value : categoryOption"
+                                        *ngFor="let categoryOption of categories; trackBy: trackById">{{ categoryOption.description }}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="lacusticoApp.entrepreneur.user"
+                                       for="field_user">User</label>
+                                <select class="form-control" id="field_user" name="user" formControlName="user">
+                                    <option [ngValue]="null"></option>
+                                    <option
+                                        [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption"
+                                        *ngFor="let userOption of users; trackBy: trackById">{{ userOption.id }}</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <!--Buttons-->
+                        <div class=" col-12 pt-1 text-center">
+
+                            <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
+                                    class="btn btn-outline-success">
+                                <span jhiTranslate="entity.action.save">Save</span>
+                            </button>
+
+                            <button type="button" id="cancel-save" class="btn btn-outline-danger"
+                                    (click)="previousState()">
+                                <span jhiTranslate="entity.action.cancel">Cancel</span>
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+</div>

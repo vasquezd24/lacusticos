@@ -1,0 +1,36 @@
+{
+  "lacusticoApp": {
+    "entrepreneur": {
+      "home": {
+        "title": "Emprendimientos",
+        "createLabel": "Crear nuevo Entrepreneur",
+        "createOrEditLabel": "Emprendimiento",
+        "notFound": "Ningún emprendimiento ha sido encontrado"
+      },
+      "created": "Emprendimiento creado",
+      "updated": "Emprendimiento modificado",
+      "deleted": "Emprendimiento eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminarlo?"
+      },
+      "detail": {
+        "title": "Emprendimiento"
+      },
+      "email": "Corre electrónico",
+      "name": "Nombre",
+      "description": "Descripción",
+      "phoneNumber": "Número telefónico",
+      "schedule": "Horario",
+      "picture": "Logo",
+      "webSite": "Sitio Web",
+      "facebookPage": "Página de Facebook",
+      "instagramPage": "Página de Instagram",
+      "activated": "Estado",
+      "category": "Categoría",
+      "user": "Usuario",
+      "subscriptor": "Suscriptores",
+      "active": "Activo",
+      "inactive": "Inactivo"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+    <div class="col-6">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-category-heading" jhiTranslate="lacusticoApp.category.home.createOrEditLabel"class=" text-center pb-4">Create or edit a Category</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lacusticoApp.category.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"placeholder="{{ 'lacusticoApp.category.description.placeholder' | translate }}"/>
+                    <div *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('description')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_type" jhiTranslate="lacusticoApp.category.type">Tipo</label>
+                    <select class="form-control" class="form-control" name="type" id="field_type"
+                            formControlName="type">
+                        <option value="Producto" selected="selected" jhiTranslate="lacusticoApp.category.typeprod">Producto</option>
+                        <option value="Emprendimiento" jhiTranslate="lacusticoApp.category.typeemp">Emprendimiento</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lacusticoApp.category.activated" for="field_activated">Activated</label>
+                    <input type="checkbox" class="form-control" name="activated" id="field_activated"
+                           formControlName="activated"/>
+                    <div *ngIf="editForm.get('activated')!.invalid && (editForm.get('activated')!.dirty || editForm.get('activated')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('activated')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="text-center pt-3">
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-outline-success">
+                    &nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+
+                <button type="button" id="cancel-save" class="btn btn-outline-danger" (click)="previousState()">
+                    &nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+            </div>
+        </form>
+    </div>
+</div>

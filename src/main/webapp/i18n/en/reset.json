@@ -1,7 +1,7 @@
 {
   "reset": {
     "request": {
-      "title": "Reset your password",
+      "title": "Reset password",
       "form": {
         "button": "Reset password"
       },
@@ -13,7 +13,7 @@
     "finish": {
       "title": "Reset password",
       "form": {
-        "button": "Validate new password"
+        "button": "Change password"
       },
       "messages": {
         "info": "Choose a new password",

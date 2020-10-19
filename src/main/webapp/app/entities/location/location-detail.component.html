@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="location">
+            <h2><span jhiTranslate="lacusticoApp.location.detail.title">Location</span> {{ location.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="lacusticoApp.location.name">Name</span></dt>
+                <dd>
+                    <span>{{ location.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.location.latitude">Latitude</span></dt>
+                <dd>
+                    <span>{{ location.latitude }}</span>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.location.longitude">Longitude</span></dt>
+                <dd>
+                    <span>{{ location.longitude }}</span>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.location.details">Details</span></dt>
+                <dd>
+                    <span>{{ location.details }}</span>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.location.activated">Activated</span></dt>
+                <dd>
+                    <span>{{ location.activated }}</span>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.location.entrepreneur">Entrepreneur</span></dt>
+                <dd>
+                    <div *ngIf="location.entrepreneur">
+                        <a [routerLink]="['/entrepreneur', location.entrepreneur?.id, 'view']">{{ location.entrepreneur?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/location', location.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

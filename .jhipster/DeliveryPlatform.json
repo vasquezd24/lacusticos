@@ -1,0 +1,32 @@
+{
+  "name": "DeliveryPlatform",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "entrepreneur",
+      "otherEntityRelationshipName": "deliveryPlatform",
+      "relationshipName": "entrepreneur",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201018194242",
+  "entityTableName": "delivery_platform",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity Subscriptor.
+    -->
+    <changeSet id="20201018194042-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="subscriptor_id"
+                                 baseTableName="subscriptor_entrepreneur"
+                                 constraintName="fk_subscriptor_entrepreneur_subscriptor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="subscriptor"/>
+
+        <addForeignKeyConstraint baseColumnNames="entrepreneur_id"
+                                 baseTableName="subscriptor_entrepreneur"
+                                 constraintName="fk_subscriptor_entrepreneur_entrepreneur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="entrepreneur"/>
+        
+    </changeSet>
+</databaseChangeLog>

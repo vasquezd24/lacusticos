@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="subscriptor">
+            <h2><span jhiTranslate="lacusticoApp.subscriptor.detail.title">Subscriptor</span> {{ subscriptor.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="lacusticoApp.subscriptor.email">Email</span></dt>
+                <dd>
+                    <span>{{ subscriptor.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.subscriptor.activated">Activated</span></dt>
+                <dd>
+                    <span>{{ subscriptor.activated }}</span>
+                </dd>
+                <dt><span jhiTranslate="lacusticoApp.subscriptor.entrepreneur">Entrepreneur</span></dt>
+                <dd>
+                    <span *ngFor="let entrepreneur of subscriptor.entrepreneurs; let last = last">
+                        <a [routerLink]="['/entrepreneur', entrepreneur?.id, 'view']">{{ entrepreneur.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/subscriptor', subscriptor.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
