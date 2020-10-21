@@ -38,6 +38,9 @@
     "enableTranslation": true,
     "nativeLanguage": "es",
     "languages": ["es", "en"],
-    "blueprints": []
+    "blueprints": [],
+    "herokuAppName": "lacustico",
+    "herokuDeployType": "git",
+    "herokuJavaVersion": "14"
   }
 }
