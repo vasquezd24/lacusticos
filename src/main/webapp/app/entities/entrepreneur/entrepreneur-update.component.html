@@ -1,12 +1,11 @@
 <div class="container justify-content-center pt-5">
     <div>
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <jhi-alert-error></jhi-alert-error>
             <h2 class=" text-center pb-3" id="jhi-entrepreneur-heading"
                 jhiTranslate="lacusticoApp.entrepreneur.home.createOrEditLabel">Create or
                 edit a Entrepreneur</h2>
             <div class="row justify-content-center pt-5">
-                <jhi-alert-error></jhi-alert-error>
-
                 <div class="col-4 my-auto pr-2"> <!--Picture-->
                     <div class="form-group">
                         <!--<label class="form-control-label text-center" jhiTranslate="lacusticoApp.entrepreneur.picture"
@@ -14,13 +13,13 @@
                         <div>
                             <div>
                                 <img class="img-fluid"
-                                    [src]="'data:' + editForm.get('pictureContentType')!.value + ';base64,' + editForm.get('picture')!.value"
+                                     [src]="'data:' + editForm.get('pictureContentType')!.value + ';base64,' + editForm.get('picture')!.value"
                                      *ngIf="editForm.get('picture')!.value"
-                                    alt="entrepreneur image"/>
+                                     alt="entrepreneur image"/>
                             </div>
                             <div *ngIf="editForm.get('picture')!.value" class="form-text text-danger clearfix text-center pt-2 pb-2">
-                            <!--<span class="pull-left">{{ editForm.get('pictureContentType')!.value }}
-                                , {{ byteSize(editForm.get('picture')!.value) }}</span>-->
+                                <!--<span class="pull-left">{{ editForm.get('pictureContentType')!.value }}
+                                    , {{ byteSize(editForm.get('picture')!.value) }}</span>-->
                                 <button type="button"
                                         (click)="clearInputImage('picture', 'pictureContentType', 'file_picture')"
                                         class="btn btn-outline-danger btn-xs ">
@@ -150,14 +149,14 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" *jhiHasAnyAuthority="'ROLE_ADMIN'">
                                 <label class="form-control-label" jhiTranslate="lacusticoApp.entrepreneur.user"
                                        for="field_user">User</label>
                                 <select class="form-control" id="field_user" name="user" formControlName="user">
                                     <option [ngValue]="null"></option>
                                     <option
                                         [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption"
-                                        *ngFor="let userOption of users; trackBy: trackById">{{ userOption.id }}</option>
+                                        *ngFor="let userOption of users; trackBy: trackById">{{ userOption.email }}</option>
                                 </select>
                             </div>
 

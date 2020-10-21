@@ -61,8 +61,8 @@ public class Entrepreneur implements Serializable {
     @Column(name = "activated", nullable = false)
     private Boolean activated;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
+    @JsonIgnoreProperties(value = "entrepreneurs", allowSetters = true)
     private Category category;
 
     @ManyToOne

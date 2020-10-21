@@ -13,6 +13,8 @@
         "subscriptor": "Suscriptores",
         "entrepreneur": "Emprendimiento",
         "deliveryPlatform": "Plataformas de envio",
+        "product": "Product",
+        "entrepreneur": "Entrepreneur",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

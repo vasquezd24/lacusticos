@@ -4,7 +4,6 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } from 'ng-jhipster';
 
 import { IProduct, Product } from 'app/shared/model/product.model';
@@ -53,27 +52,7 @@ export class ProductUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ product }) => {
       this.updateForm(product);
 
-      this.categoryService
-        .query({ filter: 'product-is-null' })
-        .pipe(
-          map((res: HttpResponse<ICategory[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: ICategory[]) => {
-          if (!product.category || !product.category.id) {
-            this.categories = resBody;
-          } else {
-            this.categoryService
-              .find(product.category.id)
-              .pipe(
-                map((subRes: HttpResponse<ICategory>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: ICategory[]) => (this.categories = concatRes));
-          }
-        });
+      this.categoryService.query().subscribe((res: HttpResponse<ICategory[]>) => (this.categories = res.body || []));
 
       this.entrepreneurService.query().subscribe((res: HttpResponse<IEntrepreneur[]>) => (this.entrepreneurs = res.body || []));
     });

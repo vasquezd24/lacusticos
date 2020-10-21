@@ -7,7 +7,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IEntrepreneur } from 'app/shared/model/entrepreneur.model';
 import { EntrepreneurService } from './entrepreneur.service';
 import { EntrepreneurDeleteDialogComponent } from './entrepreneur-delete-dialog.component';
-import { ICategory } from 'app/shared/model/category.model';
 
 @Component({
   selector: 'jhi-entrepreneur',

@@ -4,8 +4,8 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } from 'ng-jhipster';
+
 import { IEntrepreneur, Entrepreneur } from 'app/shared/model/entrepreneur.model';
 import { EntrepreneurService } from './entrepreneur.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
@@ -57,29 +57,9 @@ export class EntrepreneurUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ entrepreneur }) => {
       this.updateForm(entrepreneur);
 
-      this.categoryService
-        .query({ filter: 'entrepreneur-is-null' })
-        .pipe(
-          map((res: HttpResponse<ICategory[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: ICategory[]) => {
-          if (!entrepreneur.category || !entrepreneur.category.id) {
-            this.categories = resBody;
-          } else {
-            this.categoryService
-              .find(entrepreneur.category.id)
-              .pipe(
-                map((subRes: HttpResponse<ICategory>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: ICategory[]) => (this.categories = concatRes));
-          }
-        });
+      this.categoryService.getByTypeEnt().subscribe((res: HttpResponse<ICategory[]>) => (this.categories = res.body || []));
 
-      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
+      this.userService.getActiveUsers().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
     });
   }
 
@@ -135,6 +115,7 @@ export class EntrepreneurUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const entrepreneur = this.createFromForm();
+
     if (entrepreneur.id !== undefined) {
       this.subscribeToSaveResponse(this.entrepreneurService.update(entrepreneur));
     } else {

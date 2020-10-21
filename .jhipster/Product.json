@@ -37,12 +37,11 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-one",
+      "relationshipType": "many-to-one",
       "otherEntityName": "category",
       "otherEntityRelationshipName": "product",
       "relationshipName": "category",
-      "otherEntityField": "id",
-      "ownerSide": true
+      "otherEntityField": "id"
     },
     {
       "relationshipType": "many-to-one",

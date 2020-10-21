@@ -1,7 +1,11 @@
 package com.dva.lacustico.web.rest;
 
 import com.dva.lacustico.config.Constants;
+import com.dva.lacustico.domain.Category;
+import com.dva.lacustico.domain.Entrepreneur;
 import com.dva.lacustico.domain.User;
+import com.dva.lacustico.repository.EntrepreneurRepository;
+import com.dva.lacustico.repository.ProductRepository;
 import com.dva.lacustico.repository.UserRepository;
 import com.dva.lacustico.security.AuthoritiesConstants;
 import com.dva.lacustico.service.MailService;
@@ -24,6 +28,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -71,10 +77,16 @@ public class UserResource {
 
     private final MailService mailService;
 
-    public UserResource(UserService userService, UserRepository userRepository, MailService mailService) {
+    private EntrepreneurRepository entrepreneurRepository;
+    private ProductRepository productRepository;
+
+    public UserResource(UserService userService, UserRepository userRepository, MailService mailService,
+                        EntrepreneurRepository entrepreneurRepository, ProductRepository productRepository) {
         this.userService = userService;
         this.userRepository = userRepository;
         this.mailService = mailService;
+        this.entrepreneurRepository = entrepreneurRepository;
+        this.productRepository = productRepository;
     }
 
     /**
@@ -122,7 +134,28 @@ public class UserResource {
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<UserDTO> updateUser(@Valid @RequestBody UserDTO userDTO) {
         log.debug("REST request to update User : {}", userDTO);
+        List<Entrepreneur> listEnt = entrepreneurRepository.findEntrepreneurByUser(userDTO.getId());
+
         Optional<User> existingUser = userRepository.findOneByEmailIgnoreCase(userDTO.getEmail());
+        if(existingUser.get().getActivated() != userDTO.isActivated()){
+            log.debug("REST request to update User status: {}", userDTO);
+
+            if(listEnt!=null){
+                if(userDTO.isActivated() == true){
+                    entrepreneurRepository.updateEntrepreneurStatus(userDTO.getId(), true);
+                    for (int i = 0; i < listEnt.size(); i++) {
+                        productRepository.updateProductStatus(listEnt.get(i).getId(), true);
+                    }
+                    productRepository.updateProductStatus(userDTO.getId(), true);
+                }else{
+                    entrepreneurRepository.updateEntrepreneurStatus(userDTO.getId(), false);
+                    for (int i = 0; i < listEnt.size(); i++) {
+                        productRepository.updateProductStatus(listEnt.get(i).getId(), false);
+                    }
+                }
+            }
+        }
+
         if (existingUser.isPresent() && (!existingUser.get().getId().equals(userDTO.getId()))) {
             throw new EmailAlreadyUsedException();
         }
@@ -159,6 +192,7 @@ public class UserResource {
         return userService.getAuthorities();
     }
 
+
     /**
      * {@code GET /users/:login} : get the "login" user.
      *
@@ -185,5 +219,10 @@ public class UserResource {
         log.debug("REST request to delete User: {}", login);
         userService.deleteUser(login);
         return ResponseEntity.noContent().headers(HeaderUtil.createAlert(applicationName,  "userManagement.deleted", login)).build();
+    }
+
+    @GetMapping("/users/active")
+    public List <User> getActiveUsers(){
+        return  userRepository.findActiveUser();
     }
 }
