@@ -16,10 +16,12 @@
       "detail": {
         "title": "Emprendimiento"
       },
-      "email": "Corre electrónico",
+      "email": "Correo electrónico",
+      "email2": "Correo electrónico:",
       "name": "Nombre",
       "description": "Descripción",
       "phoneNumber": "Número telefónico",
+      "phoneNumber2": "Número telefónico:",
       "schedule": "Horario",
       "picture": "Logo",
       "webSite": "Sitio Web",
@@ -27,6 +29,8 @@
       "instagramPage": "Página de Instagram",
       "activated": "Estado",
       "category": "Categoría",
+      "category2": "Categoría:",
+
       "user": "Usuario",
       "subscriptor": "Suscriptores",
       "active": "Activo",

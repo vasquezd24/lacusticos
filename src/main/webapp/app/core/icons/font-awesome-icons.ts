@@ -38,9 +38,15 @@ import {
   faKey,
   faCogs,
   faCog,
+  faGlobeAmericas,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
+
 export const fontAwesomeIcons = [
+  faInstagram,
+  faFacebook,
+  faGlobeAmericas,
   faUser,
   faSort,
   faSortUp,

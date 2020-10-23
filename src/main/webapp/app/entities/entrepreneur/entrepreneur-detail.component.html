@@ -1,81 +1,178 @@
 <div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="entrepreneur">
-            <h2><span jhiTranslate="lacusticoApp.entrepreneur.detail.title">Entrepreneur</span> {{ entrepreneur.id }}</h2>
-
-            <hr>
-
+    <div class="col-10">
+        <div>
+            <h2 class=" text-center pb-3" id="jhi-entrepreneur-heading">{{entrepreneur.name}}</h2>
+            <!--            <hr>-->
             <jhi-alert-error></jhi-alert-error>
 
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.email">Email</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.email }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.name">Name</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.name }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.description">Description</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.description }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.phoneNumber">Phone Number</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.phoneNumber }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.schedule">Schedule</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.schedule }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.picture">Picture</span></dt>
-                <dd>
-                    <div *ngIf="entrepreneur.picture">
-                        <a (click)="openFile(entrepreneur.pictureContentType, entrepreneur.picture)">
-                            <img [src]="'data:' + entrepreneur.pictureContentType + ';base64,' + entrepreneur.picture" style="max-width: 100%;" alt="entrepreneur image"/>
-                        </a>
-                        {{ entrepreneur.pictureContentType }}, {{ byteSize(entrepreneur.picture) }}
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.webSite">Web Site</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.webSite }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.facebookPage">Facebook Page</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.facebookPage }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.instagramPage">Instagram Page</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.instagramPage }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.activated">Activated</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.activated }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.category">Category</span></dt>
-                <dd>
-                    <div *ngIf="entrepreneur.category">
-                        <a [routerLink]="['/category', entrepreneur.category?.id, 'view']">{{ entrepreneur.category?.id }}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.user">User</span></dt>
-                <dd>
-                    {{ entrepreneur.user?.id }}
-                </dd>
-            </dl>
+        </div>
+        <div class="row justify-content-center " style="max-height: 90%">
+            <div class=" card col-3" *ngIf="entrepreneur">
+                <div class="card-body">
+                    <dl class="row-md jh-entity-details">
+                        <dd>
+                            <div *ngIf="entrepreneur.picture" class="text-center">
+                                <a (click)="openFile(entrepreneur.pictureContentType, entrepreneur.picture)">
+                                    <img class="img-fluid"
+                                         [src]="'data:' + entrepreneur.pictureContentType + ';base64,' + entrepreneur.picture"/>
+                                </a>
+                            </div>
+                        </dd>
+                        <dd class="pt-3 pb-3 text-center">
+                            <h5 class="font-italic">{{entrepreneur.description}}</h5>
+                        </dd>
+                        <dd>
+                            <span class="font-weight-bold"
+                                  jhiTranslate="lacusticoApp.entrepreneur.category2">Category</span>
+                            <span>{{entrepreneur.category?.description}}</span>
+                        </dd>
+                        <dd>
+                            <span class="font-weight-bold" jhiTranslate="lacusticoApp.entrepreneur.email2">Email</span>
+                            <span>{{ entrepreneur.email }}</span>
+                        </dd>
+                        <dd>
+                            <span class="font-weight-bold" jhiTranslate="lacusticoApp.entrepreneur.phoneNumber2">Phone Number</span>
+                            <span>{{ entrepreneur.phoneNumber }}</span>
+                        </dd>
+                    </dl>
+                    <div class="text-center pt-3">
+                        <button type="submit"
+                                (click)="previousState()"
+                                class="btn btn-outline-primary">
+                            <fa-icon icon="arrow-left"></fa-icon>&nbsp;
+                        </button>
+                        <button type="button"
+                                [routerLink]="['/entrepreneur', entrepreneur.id, 'edit']"
+                                class="btn btn-outline-success">
+                            <fa-icon icon="pencil-alt"></fa-icon>&nbsp;
+                        </button>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
-            </button>
 
-            <button type="button"
-                    [routerLink]="['/entrepreneur', entrepreneur.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
-            </button>
+                    </div>
+                </div>
+            </div>
+            <div class="pr-3"></div>
+            <div class="card col-8">
+                <div class="card-body">
+                    <ngb-tabset>
+                        <ngb-tab title="Productos">
+                            <ng-template ngbTabContent>
+                                <div class=" pt-3 col-12">
+                                    <!-- Row -->
+                                    <div class="row">
+                                        <!-- column -->
+                                        <div class="col-lg-3 col-md-6">
+                                            <!-- Card -->
+                                            <div class="card">
+                                                <img class="card-img-top img-fluid"
+                                                     src="../../../content/images/logo.png" alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">Card title</h4>
+                                                </div>
+                                            </div>
+                                            <!-- Card -->
+                                        </div>
+                                        <!-- column -->
+                                        <!-- column -->
+                                        <div class="col-lg-3 col-md-6">
+                                            <!-- Card -->
+                                            <div class="card">
+                                                <img class="card-img-top img-fluid"
+                                                     src="../../../content/images/logo.png" alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">Card title</h4>
+                                                </div>
+                                            </div>
+                                            <!-- Card -->
+                                        </div>
+                                        <!-- column -->
+                                        <!-- column -->
+                                        <div class="col-lg-3 col-md-6">
+                                            <!-- Card -->
+                                            <div class="card">
+                                                <img class="card-img-top img-fluid"
+                                                     src="../../../content/images/logo.png" alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">Card title</h4>
+                                                </div>
+                                            </div>
+                                            <!-- Card -->
+                                        </div>
+                                        <!-- column -->
+                                        <!-- column -->
+                                        <div class="col-lg-3 col-md-6 img-fluid">
+                                            <!-- Card -->
+                                            <div class="card">
+                                                <img class="card-img-top img-responsive"
+                                                     src="../../../content/images/logo.png" alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">Card title</h4>
+                                                </div>
+                                            </div>
+                                            <!-- Card -->
+                                        </div>
+                                        <!-- column -->
+                                    </div>
+                                    <!-- Row -->
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab>
+                            <ng-template ngbTabTitle><b>Contacto</b></ng-template>
+                            <ng-template ngbTabContent>
+
+
+                                <dt><span jhiTranslate="lacusticoApp.entrepreneur.schedule">Schedule</span></dt>
+                                <dd>
+                                    <span>{{ entrepreneur.schedule }}</span>
+                                </dd>
+
+                                <dt><span jhiTranslate="lacusticoApp.entrepreneur.webSite">Web Site</span></dt>
+                                <dd>
+                                    <fa-icon icon="globe-americas"></fa-icon>
+
+                                    <span>{{ entrepreneur.webSite }}</span>
+                                </dd>
+                                <dt><span jhiTranslate="lacusticoApp.entrepreneur.facebookPage">Facebook Page</span>
+                                </dt>
+                                <dd>
+                                    <fa-icon icon="facebook"></fa-icon>
+                                    <span>{{ entrepreneur.facebookPage }}</span>
+                                </dd>
+                                <dt><span jhiTranslate="lacusticoApp.entrepreneur.instagramPage">Instagram Page</span>
+                                </dt>
+                                <dd>
+                                    <span>{{ entrepreneur.instagramPage }}</span>
+                                </dd>
+                                <dt><span jhiTranslate="lacusticoApp.entrepreneur.activated">Activated</span></dt>
+                                <dd>
+                                    <span>{{ entrepreneur.activated }}</span>
+                                </dd>
+
+                                <dt><span jhiTranslate="lacusticoApp.entrepreneur.user">User</span></dt>
+                                <dd>
+                                    {{ entrepreneur.user?.firstName }} {{entrepreneur.user?.lastName}}
+                                </dd>
+
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="Ubicaciones">
+                            <ng-template ngbTabContent>
+                                <p class="p-t-20">Raw denim you probably haven't heard of them jean shorts Austin.
+                                    Nesciunt
+                                    tofu stumptown aliqua, retro synth
+                                    master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.
+                                    Reprehenderit butcher retro keffiyeh
+                                    dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid.
+                                    Aliquip placeat salvia cillum
+                                    iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi
+                                    qui.</p>
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
