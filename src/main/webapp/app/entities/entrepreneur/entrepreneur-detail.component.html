@@ -87,7 +87,7 @@
                                     <!-- Row -->
                                     <div class="row">
                                         <!-- column -->
-                                        <div class="col-lg-2 pt-3" *ngFor="let product of products; trackBy: trackId">
+                                        <div class="col-lg-2 pt-3" *ngFor="let product of products| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; trackBy: trackId">
 
                                             <div class="row">
                                                 <img class="card-img-top img-fluid col-12"
