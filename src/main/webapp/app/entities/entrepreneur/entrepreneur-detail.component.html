@@ -1,13 +1,25 @@
+<<<<<<< HEAD
 <div class="row justify-content-center" *ngIf="entrepreneur">
     <div class="col-10">
         <div>
             <h1 class=" text-center pb-3" id="jhi-entrepreneur-heading">{{entrepreneur.name}}</h1>
+=======
+<div class="row justify-content-center">
+    <div class="col-10">
+        <div>
+            <h2 class=" text-center pb-3" id="jhi-entrepreneur-heading">{{entrepreneur.name}}</h2>
+>>>>>>> fe3c61a4c26a626080f12ae31705dc4037aa2b6f
             <!--            <hr>-->
             <jhi-alert-error></jhi-alert-error>
 
         </div>
+<<<<<<< HEAD
         <div class="row justify-content-center" style="max-height: 90%">
             <div class=" card col-3">
+=======
+        <div class="row justify-content-center " style="max-height: 90%">
+            <div class=" card col-3" *ngIf="entrepreneur">
+>>>>>>> fe3c61a4c26a626080f12ae31705dc4037aa2b6f
                 <div class="card-body">
                     <dl class="row-md jh-entity-details">
                         <dd>
@@ -36,16 +48,25 @@
                         </dd>
                     </dl>
                     <div class="text-center pt-3">
+<<<<<<< HEAD
                         <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnBack' | translate }}"
+=======
+                        <button type="submit"
+>>>>>>> fe3c61a4c26a626080f12ae31705dc4037aa2b6f
                                 (click)="previousState()"
                                 class="btn btn-outline-primary">
                             <fa-icon icon="arrow-left"></fa-icon>&nbsp;
                         </button>
+<<<<<<< HEAD
                         <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnEdit' | translate }}"
+=======
+                        <button type="button"
+>>>>>>> fe3c61a4c26a626080f12ae31705dc4037aa2b6f
                                 [routerLink]="['/entrepreneur', entrepreneur.id, 'edit']"
                                 class="btn btn-outline-success">
                             <fa-icon icon="pencil-alt"></fa-icon>&nbsp;
                         </button>
+<<<<<<< HEAD
                         <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnProduct' | translate }}"
                                 [routerLink]="['/entrepreneur', 'product',entrepreneur.id]"
                                 class="btn btn-outline-success">
@@ -55,6 +76,8 @@
                                 class="btn btn-outline-success">
                             <fa-icon icon="truck"></fa-icon>&nbsp;
                         </button>
+=======
+>>>>>>> fe3c61a4c26a626080f12ae31705dc4037aa2b6f
 
 
                     </div>
@@ -64,6 +87,7 @@
             <div class="card col-8">
                 <div class="card-body">
                     <ngb-tabset>
+<<<<<<< HEAD
                         <ngb-tab>
                             <ng-template ngbTabTitle><span jhiTranslate="lacusticoApp.entrepreneur.titleProduct"></span>
                             </ng-template>
@@ -83,10 +107,15 @@
                                     <span
                                         jhiTranslate="lacusticoApp.product.home.notFound">No deliveryPlatforms found</span>
                                 </div>
+=======
+                        <ngb-tab title="Productos">
+                            <ng-template ngbTabContent>
+>>>>>>> fe3c61a4c26a626080f12ae31705dc4037aa2b6f
                                 <div class=" pt-3 col-12">
                                     <!-- Row -->
                                     <div class="row">
                                         <!-- column -->
+<<<<<<< HEAD
                                         <div class="col-lg-2 pt-3" *ngFor="let product of products| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; trackBy: trackId">
 
                                                 <div class="row">
@@ -175,6 +204,104 @@
                         <ngb-tab>
                             <ng-template ngbTabTitle><span
                                 jhiTranslate="lacusticoApp.entrepreneur.titleLocation"></span></ng-template>
+=======
+                                        <div class="col-lg-3 col-md-6">
+                                            <!-- Card -->
+                                            <div class="card">
+                                                <img class="card-img-top img-fluid"
+                                                     src="../../../content/images/logo.png" alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">Card title</h4>
+                                                </div>
+                                            </div>
+                                            <!-- Card -->
+                                        </div>
+                                        <!-- column -->
+                                        <!-- column -->
+                                        <div class="col-lg-3 col-md-6">
+                                            <!-- Card -->
+                                            <div class="card">
+                                                <img class="card-img-top img-fluid"
+                                                     src="../../../content/images/logo.png" alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">Card title</h4>
+                                                </div>
+                                            </div>
+                                            <!-- Card -->
+                                        </div>
+                                        <!-- column -->
+                                        <!-- column -->
+                                        <div class="col-lg-3 col-md-6">
+                                            <!-- Card -->
+                                            <div class="card">
+                                                <img class="card-img-top img-fluid"
+                                                     src="../../../content/images/logo.png" alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">Card title</h4>
+                                                </div>
+                                            </div>
+                                            <!-- Card -->
+                                        </div>
+                                        <!-- column -->
+                                        <!-- column -->
+                                        <div class="col-lg-3 col-md-6 img-fluid">
+                                            <!-- Card -->
+                                            <div class="card">
+                                                <img class="card-img-top img-responsive"
+                                                     src="../../../content/images/logo.png" alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">Card title</h4>
+                                                </div>
+                                            </div>
+                                            <!-- Card -->
+                                        </div>
+                                        <!-- column -->
+                                    </div>
+                                    <!-- Row -->
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab>
+                            <ng-template ngbTabTitle><b>Contacto</b></ng-template>
+                            <ng-template ngbTabContent>
+
+
+                                <dt><span jhiTranslate="lacusticoApp.entrepreneur.schedule">Schedule</span></dt>
+                                <dd>
+                                    <span>{{ entrepreneur.schedule }}</span>
+                                </dd>
+
+                                <dt><span jhiTranslate="lacusticoApp.entrepreneur.webSite">Web Site</span></dt>
+                                <dd>
+                                    <fa-icon icon="globe-americas"></fa-icon>
+
+                                    <span>{{ entrepreneur.webSite }}</span>
+                                </dd>
+                                <dt><span jhiTranslate="lacusticoApp.entrepreneur.facebookPage">Facebook Page</span>
+                                </dt>
+                                <dd>
+                                    <fa-icon icon="facebook"></fa-icon>
+                                    <span>{{ entrepreneur.facebookPage }}</span>
+                                </dd>
+                                <dt><span jhiTranslate="lacusticoApp.entrepreneur.instagramPage">Instagram Page</span>
+                                </dt>
+                                <dd>
+                                    <span>{{ entrepreneur.instagramPage }}</span>
+                                </dd>
+                                <dt><span jhiTranslate="lacusticoApp.entrepreneur.activated">Activated</span></dt>
+                                <dd>
+                                    <span>{{ entrepreneur.activated }}</span>
+                                </dd>
+
+                                <dt><span jhiTranslate="lacusticoApp.entrepreneur.user">User</span></dt>
+                                <dd>
+                                    {{ entrepreneur.user?.firstName }} {{entrepreneur.user?.lastName}}
+                                </dd>
+
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="Ubicaciones">
+>>>>>>> fe3c61a4c26a626080f12ae31705dc4037aa2b6f
                             <ng-template ngbTabContent>
                                 <p class="p-t-20">Raw denim you probably haven't heard of them jean shorts Austin.
                                     Nesciunt
