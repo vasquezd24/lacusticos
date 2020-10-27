@@ -1,12 +1,11 @@
 package com.dva.lacustico.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A Subscriptor.
@@ -29,11 +28,9 @@ public class Subscriptor implements Serializable {
     @Column(name = "activated", nullable = false)
     private Boolean activated;
 
-    @ManyToMany
-    @JoinTable(name = "subscriptor_entrepreneur",
-               joinColumns = @JoinColumn(name = "subscriptor_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "entrepreneur_id", referencedColumnName = "id"))
-    private Set<Entrepreneur> entrepreneurs = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties(value = "subscriptors", allowSetters = true)
+    private Entrepreneur entrepreneur;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -70,29 +67,17 @@ public class Subscriptor implements Serializable {
         this.activated = activated;
     }
 
-    public Set<Entrepreneur> getEntrepreneurs() {
-        return entrepreneurs;
+    public Entrepreneur getEntrepreneur() {
+        return entrepreneur;
     }
 
-    public Subscriptor entrepreneurs(Set<Entrepreneur> entrepreneurs) {
-        this.entrepreneurs = entrepreneurs;
+    public Subscriptor entrepreneur(Entrepreneur entrepreneur) {
+        this.entrepreneur = entrepreneur;
         return this;
     }
 
-    public Subscriptor addEntrepreneur(Entrepreneur entrepreneur) {
-        this.entrepreneurs.add(entrepreneur);
-        entrepreneur.getSubscriptors().add(this);
-        return this;
-    }
-
-    public Subscriptor removeEntrepreneur(Entrepreneur entrepreneur) {
-        this.entrepreneurs.remove(entrepreneur);
-        entrepreneur.getSubscriptors().remove(this);
-        return this;
-    }
-
-    public void setEntrepreneurs(Set<Entrepreneur> entrepreneurs) {
-        this.entrepreneurs = entrepreneurs;
+    public void setEntrepreneur(Entrepreneur entrepreneur) {
+        this.entrepreneur = entrepreneur;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

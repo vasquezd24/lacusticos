@@ -1,111 +1,145 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-product-heading" jhiTranslate="lacusticoApp.product.home.createOrEditLabel">Create or edit a Product</h2>
+            <h2 class=" text-center pb-3" id="jhi-product-heading"
+                jhiTranslate="lacusticoApp.product.home.createOrEditLabel">
+                Create or edit a Product</h2>
+            <jhi-alert-error></jhi-alert-error>
 
-            <div>
-                <jhi-alert-error></jhi-alert-error>
 
-                <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="lacusticoApp.product.name" for="field_name">Name</label>
-                    <input type="text" class="form-control" name="name" id="field_name"
-                           formControlName="name"/>
-                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="lacusticoApp.product.description" for="field_description">Description</label>
-                    <input type="text" class="form-control" name="description" id="field_description"
-                           formControlName="description"/>
-                    <div *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('description')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="lacusticoApp.product.price" for="field_price">Price</label>
-                    <input type="number" class="form-control" name="price" id="field_price"
-                           formControlName="price"/>
-                    <div *ngIf="editForm.get('price')!.invalid && (editForm.get('price')!.dirty || editForm.get('price')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('price')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.get('price')?.errors?.number" jhiTranslate="entity.validation.number">
-                            This field should be a number.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="lacusticoApp.product.productImage" for="field_productImage">Product Image</label>
-                    <div>
-                        <img [src]="'data:' + editForm.get('productImageContentType')!.value + ';base64,' + editForm.get('productImage')!.value" style="max-height: 100px;" *ngIf="editForm.get('productImage')!.value" alt="product image"/>
-                        <div *ngIf="editForm.get('productImage')!.value" class="form-text text-danger clearfix">
-                            <span class="pull-left">{{ editForm.get('productImageContentType')!.value }}, {{ byteSize(editForm.get('productImage')!.value) }}</span>
-                            <button type="button" (click)="clearInputImage('productImage', 'productImageContentType', 'file_productImage')" class="btn btn-secondary btn-xs pull-right">
-                                <fa-icon icon="times"></fa-icon>
-                            </button>
+            <div class="row justify-content-center pt-5">
+                <!--Imagen -->
+                <div class="col-4 my-auto pr2">
+                    <div class="form-group">
+                         <div>
+                             <div>
+                                 <img class="img-fluid"
+                                     [src]="'data:' + editForm.get('productImageContentType')!.value + ';base64,' + editForm.get('productImage')!.value"
+                                     style="max-height: 100px;" *ngIf="editForm.get('productImage')!.value"
+                                     alt="product image"/>
+                             </div>
+                            <div *ngIf="editForm.get('productImage')!.value" class="form-text text-danger clearfix text-center pt-2 pb-2">
+                                <button type="button"
+                                        (click)="clearInputImage('productImage', 'productImageContentType', 'file_productImage')"
+                                        class="btn btn-outline-success btn-xs">
+                                    <fa-icon icon="times"></fa-icon>
+                                </button>
+                            </div>
+                            <input type="file" id="file_productImage"
+                                   (change)="setFileData($event, 'productImage', true)" accept="image/*"
+                                   jhiTranslate="entity.action.addimage" class="btn-outline-success"/>
                         </div>
-                        <input type="file" id="file_productImage" (change)="setFileData($event, 'productImage', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
-                    </div>
-                    <input type="hidden" class="form-control" name="productImage" id="field_productImage"
-                           formControlName="productImage"/>
-                    <input type="hidden" class="form-control" name="productImageContentType" id="field_productImageContentType"
-                           formControlName="productImageContentType" />
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="lacusticoApp.product.activated" for="field_activated">Activated</label>
-                    <input type="checkbox" class="form-control" name="activated" id="field_activated"
-                           formControlName="activated"/>
-                    <div *ngIf="editForm.get('activated')!.invalid && (editForm.get('activated')!.dirty || editForm.get('activated')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('activated')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
+                        <input type="hidden" class="form-control" name="productImage" id="field_productImage"
+                               formControlName="productImage"/>
+                        <input type="hidden" class="form-control" name="productImageContentType"
+                               id="field_productImageContentType"
+                               formControlName="productImageContentType"/>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="lacusticoApp.product.category" for="field_category">Category</label>
-                    <select class="form-control" id="field_category" name="category" formControlName="category">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="categoryOption.id === editForm.get('category')!.value?.id ? editForm.get('category')!.value : categoryOption" *ngFor="let categoryOption of categories; trackBy: trackById">{{ categoryOption.id }}</option>
-                    </select>
+                <!-- form-->
+                <div class=" col-6 my-auto">
+
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="lacusticoApp.product.name"
+                               for="field_name">Name</label>
+                        <input type="text" class="form-control" name="name" id="field_name"
+                               formControlName="name"/>
+                        <div
+                            *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('name')?.errors?.required"
+                                   jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="lacusticoApp.product.description"
+                               for="field_description">Description</label>
+                        <input type="text" class="form-control" name="description" id="field_description"
+                               formControlName="description"/>
+                        <div
+                            *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('description')?.errors?.required"
+                                   jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="lacusticoApp.product.price" for="field_price">Price</label>
+                        <input type="number" class="form-control" name="price" id="field_price"
+                               formControlName="price"/>
+                        <div
+                            *ngIf="editForm.get('price')!.invalid && (editForm.get('price')!.dirty || editForm.get('price')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('price')?.errors?.required"
+                                   jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                   [hidden]="!editForm.get('price')?.errors?.number"
+                                   jhiTranslate="entity.validation.number">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="lacusticoApp.product.activated"
+                               for="field_activated">Activated</label>
+                        <input type="checkbox" class="form-control" name="activated" id="field_activated"
+                               formControlName="activated"/>
+                        <div
+                            *ngIf="editForm.get('activated')!.invalid && (editForm.get('activated')!.dirty || editForm.get('activated')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('activated')?.errors?.required"
+                                   jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="lacusticoApp.product.category"
+                               for="field_category">Category</label>
+                        <select class="form-control" id="field_category" name="category" formControlName="category">
+                            <option [ngValue]="null"></option>
+                            <option
+                                [ngValue]="categoryOption.id === editForm.get('category')!.value?.id ? editForm.get('category')!.value : categoryOption"
+                                *ngFor="let categoryOption of categories; trackBy: trackById">{{ categoryOption.description }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="lacusticoApp.product.entrepreneur"
+                               for="field_entrepreneur">Entrepreneur</label>
+                        <select class="form-control" id="field_entrepreneur" name="entrepreneur"
+                                formControlName="entrepreneur">
+                            <option [ngValue]="null"></option>
+                            <option
+                                [ngValue]="entrepreneurOption.id === editForm.get('entrepreneur')!.value?.id ? editForm.get('entrepreneur')!.value : entrepreneurOption"
+                                *ngFor="let entrepreneurOption of entrepreneurs; trackBy: trackById">{{ entrepreneurOption.name }}</option>
+                        </select>
+                    </div>
+
+                    <div class=" col-12 pt-1 text-center">
+                        <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
+                                class="btn btn-outline-success">
+                            <span jhiTranslate="entity.action.save">Save</span>
+                        </button>
+                        <button type="button" id="cancel-save" class="btn btn-outline-danger" (click)="previousState()">
+                            <span jhiTranslate="entity.action.cancel">Cancel</span>
+                        </button>
+
+
+                    </div>
+
                 </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="lacusticoApp.product.entrepreneur" for="field_entrepreneur">Entrepreneur</label>
-                    <select class="form-control" id="field_entrepreneur" name="entrepreneur" formControlName="entrepreneur">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="entrepreneurOption.id === editForm.get('entrepreneur')!.value?.id ? editForm.get('entrepreneur')!.value : entrepreneurOption" *ngFor="let entrepreneurOption of entrepreneurs; trackBy: trackById">{{ entrepreneurOption.id }}</option>
-                    </select>
-                </div>
-            </div>
-
-            <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
-
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                </button>
             </div>
         </form>
     </div>

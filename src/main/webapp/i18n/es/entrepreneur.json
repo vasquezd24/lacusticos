@@ -5,7 +5,7 @@
         "title": "Emprendimientos",
         "createLabel": "Crear nuevo Entrepreneur",
         "createOrEditLabel": "Emprendimiento",
-        "notFound": "Ningún emprendimiento ha sido encontrado"
+        "notFound": "Ningún emprendimiento ha sido encontrado."
       },
       "created": "Emprendimiento creado",
       "updated": "Emprendimiento modificado",
@@ -16,10 +16,12 @@
       "detail": {
         "title": "Emprendimiento"
       },
-      "email": "Corre electrónico",
+      "email": "Correo electrónico",
+      "email2": "Correo electrónico:",
       "name": "Nombre",
       "description": "Descripción",
       "phoneNumber": "Número telefónico",
+      "phoneNumber2": "Número telefónico:",
       "schedule": "Horario",
       "picture": "Logo",
       "webSite": "Sitio Web",
@@ -27,10 +29,22 @@
       "instagramPage": "Página de Instagram",
       "activated": "Estado",
       "category": "Categoría",
+      "category2": "Categoría:",
       "user": "Usuario",
       "subscriptor": "Suscriptores",
       "active": "Activo",
-      "inactive": "Inactivo"
+      "inactive": "Inactivo",
+      "titlePlatf": "Plataformas de entrega",
+      "contactPerson": "Contacto",
+      "titleInfo": "Información de contacto",
+      "titleProduct": "Productos",
+      "titleContact": "Contacto",
+      "titleLocation": "Ubicaciones",
+      "search": "Ingrese el nombre del producto",
+      "btnBack": "Volver",
+      "btnEdit": "Editar",
+      "btnProduct": "Productos",
+      "btnDelivery": "Platformas de entrega"
     }
   }
 }

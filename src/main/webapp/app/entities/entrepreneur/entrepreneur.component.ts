@@ -15,6 +15,9 @@ import { EntrepreneurDeleteDialogComponent } from './entrepreneur-delete-dialog.
 export class EntrepreneurComponent implements OnInit, OnDestroy {
   entrepreneurs?: IEntrepreneur[];
   eventSubscriber?: Subscription;
+  pageSize = 10;
+  page = 1;
+  collectionSize = 0;
 
   constructor(
     protected entrepreneurService: EntrepreneurService,
@@ -24,7 +27,17 @@ export class EntrepreneurComponent implements OnInit, OnDestroy {
   ) {}
 
   loadAll(): void {
-    this.entrepreneurService.query().subscribe((res: HttpResponse<IEntrepreneur[]>) => (this.entrepreneurs = res.body || []));
+    this.entrepreneurService
+      .query()
+      .subscribe(
+        (res: HttpResponse<IEntrepreneur[]>) => (
+          (this.entrepreneurs = res.body || []), (this.collectionSize = Number(this.entrepreneurs.length))
+        )
+      );
+  }
+
+  previousState(): void {
+    window.history.back();
   }
 
   ngOnInit(): void {

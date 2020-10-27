@@ -4,6 +4,11 @@
         <button id="jh-create-entity" class="btn btn-outline-success float-right jh-create-entity create-entrepreneur" [routerLink]="['/entrepreneur/new']">
             <fa-icon icon="plus"></fa-icon>
         </button>
+        <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnBack' | translate }}"
+                (click)="previousState()"
+                class="btn btn-outline-primary float-right jh-create-entity create-category">
+            <fa-icon icon="arrow-left"></fa-icon>&nbsp;
+        </button>
     </h2>
 
     <jhi-alert-error></jhi-alert-error>
@@ -27,7 +32,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let entrepreneur of entrepreneurs ;trackBy: trackId">
+            <tr *ngFor="let entrepreneur of entrepreneurs | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;trackBy: trackId">
                 <td>
                     <a *ngIf="entrepreneur.picture" (click)="openFile(entrepreneur.pictureContentType, entrepreneur.picture)">
                         <img [src]="'data:' + entrepreneur.pictureContentType + ';base64,' + entrepreneur.picture" style="max-height: 30px;" alt="entrepreneur image"/>
@@ -69,4 +74,9 @@
             </tbody>
         </table>
     </div>
+    <div class="row justify-content-center">
+        <ngb-pagination [pageSize] = "pageSize" [collectionSize]="collectionSize" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>
+
+    </div>
+
 </div>

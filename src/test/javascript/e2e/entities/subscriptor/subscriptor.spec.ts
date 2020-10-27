@@ -43,10 +43,7 @@ describe('Subscriptor e2e test', () => {
 
     await subscriptorComponentsPage.clickOnCreateButton();
 
-    await promise.all([
-      subscriptorUpdatePage.setEmailInput('email'),
-      // subscriptorUpdatePage.entrepreneurSelectLastOption(),
-    ]);
+    await promise.all([subscriptorUpdatePage.setEmailInput('email'), subscriptorUpdatePage.entrepreneurSelectLastOption()]);
 
     expect(await subscriptorUpdatePage.getEmailInput()).to.eq('email', 'Expected Email value to be equals to email');
     const selectedActivated = subscriptorUpdatePage.getActivatedInput();

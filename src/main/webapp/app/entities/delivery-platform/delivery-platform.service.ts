@@ -12,6 +12,7 @@ type EntityArrayResponseType = HttpResponse<IDeliveryPlatform[]>;
 @Injectable({ providedIn: 'root' })
 export class DeliveryPlatformService {
   public resourceUrl = SERVER_API_URL + 'api/delivery-platforms';
+  public entreURL = SERVER_API_URL + 'api/delivery-platforms/entrepreneur';
 
   constructor(protected http: HttpClient) {}
 
@@ -34,5 +35,10 @@ export class DeliveryPlatformService {
 
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  findByEntrepreneur(id: number | undefined, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IDeliveryPlatform[]>(`${this.entreURL}/${id}`, { params: options, observe: 'response' });
   }
 }

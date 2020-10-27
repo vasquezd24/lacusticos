@@ -15,16 +15,26 @@ import { CategoryDeleteDialogComponent } from './category-delete-dialog.componen
 export class CategoryComponent implements OnInit, OnDestroy {
   categories?: ICategory[];
   eventSubscriber?: Subscription;
+  pageSize = 10;
+  page = 1;
+  collectionSize = 0;
 
   constructor(protected categoryService: CategoryService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
-    this.categoryService.query().subscribe((res: HttpResponse<ICategory[]>) => (this.categories = res.body || []));
+    this.categoryService
+      .query()
+      .subscribe(
+        (res: HttpResponse<ICategory[]>) => ((this.categories = res.body || []), (this.collectionSize = Number(this.categories.length)))
+      );
   }
 
   ngOnInit(): void {
     this.loadAll();
     this.registerChangeInCategories();
+  }
+  previousState(): void {
+    window.history.back();
   }
 
   ngOnDestroy(): void {

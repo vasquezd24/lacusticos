@@ -3,15 +3,15 @@
     "product": {
       "home": {
         "title": "Products",
-        "createLabel": "Create a new Product",
-        "createOrEditLabel": "Create or edit a Product",
-        "notFound": "No Products found"
+        "createLabel": "Product",
+        "createOrEditLabel": "Product",
+        "notFound": "No products found."
       },
-      "created": "A new Product is created with identifier {{ param }}",
-      "updated": "A Product is updated with identifier {{ param }}",
-      "deleted": "A Product is deleted with identifier {{ param }}",
+      "created": "Product created.",
+      "updated": "Product updated.",
+      "deleted": "Product deleted.",
       "delete": {
-        "question": "Are you sure you want to delete Product {{ id }}?"
+        "question": "Are you sure you want to delete id?"
       },
       "detail": {
         "title": "Product"
@@ -20,7 +20,7 @@
       "description": "Description",
       "price": "Price",
       "productImage": "Product Image",
-      "activated": "Activated",
+      "activated": "Status",
       "category": "Category",
       "entrepreneur": "Entrepreneur"
     }

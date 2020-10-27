@@ -70,7 +70,7 @@ public class EntrepreneurResource {
         }
 
         User user = userRepository.findOneByLogin(getCurrentUserLogin()).get();
-         ArrayList<String> rol = new ArrayList<String>();
+        ArrayList<String> rol = new ArrayList<String>();
 
         for (Authority temp : user.getAuthorities()) {
             System.out.println(temp.getName());
@@ -135,6 +135,12 @@ public class EntrepreneurResource {
             result= entrepreneurRepository.findByUserIsCurrentUser();
         }
         return result;
+    }
+
+    @GetMapping("/entrepreneurs-current")
+    public List<Entrepreneur> getEntrepreneurByCurrentUser() {
+
+        return entrepreneurRepository.findByUserIsCurrentUser();
     }
 
     /**

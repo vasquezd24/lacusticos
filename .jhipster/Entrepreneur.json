@@ -69,14 +69,6 @@
       "otherEntityRelationshipName": "entrepreneur",
       "relationshipName": "user",
       "otherEntityField": "id"
-    },
-    {
-      "relationshipType": "many-to-many",
-      "otherEntityName": "subscriptor",
-      "otherEntityRelationshipName": "entrepreneur",
-      "relationshipName": "subscriptor",
-      "otherEntityField": "id",
-      "ownerSide": false
     }
   ],
   "changelogDate": "20201018194142",

@@ -22,7 +22,7 @@ export class SubscriptorUpdateComponent implements OnInit {
     id: [],
     email: [null, [Validators.required]],
     activated: [null, [Validators.required]],
-    entrepreneurs: [],
+    entrepreneur: [],
   });
 
   constructor(
@@ -45,7 +45,7 @@ export class SubscriptorUpdateComponent implements OnInit {
       id: subscriptor.id,
       email: subscriptor.email,
       activated: subscriptor.activated,
-      entrepreneurs: subscriptor.entrepreneurs,
+      entrepreneur: subscriptor.entrepreneur,
     });
   }
 
@@ -69,7 +69,7 @@ export class SubscriptorUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       email: this.editForm.get(['email'])!.value,
       activated: this.editForm.get(['activated'])!.value,
-      entrepreneurs: this.editForm.get(['entrepreneurs'])!.value,
+      entrepreneur: this.editForm.get(['entrepreneur'])!.value,
     };
   }
 
@@ -91,16 +91,5 @@ export class SubscriptorUpdateComponent implements OnInit {
 
   trackById(index: number, item: IEntrepreneur): any {
     return item.id;
-  }
-
-  getSelected(selectedVals: IEntrepreneur[], option: IEntrepreneur): IEntrepreneur {
-    if (selectedVals) {
-      for (let i = 0; i < selectedVals.length; i++) {
-        if (option.id === selectedVals[i].id) {
-          return selectedVals[i];
-        }
-      }
-    }
-    return option;
   }
 }

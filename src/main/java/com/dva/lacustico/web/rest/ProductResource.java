@@ -1,5 +1,6 @@
 package com.dva.lacustico.web.rest;
 
+import com.dva.lacustico.domain.DeliveryPlatform;
 import com.dva.lacustico.domain.Product;
 import com.dva.lacustico.repository.ProductRepository;
 import com.dva.lacustico.web.rest.errors.BadRequestAlertException;
@@ -115,5 +116,18 @@ public class ProductResource {
         log.debug("REST request to delete Product : {}", id);
         productRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    }
+
+
+    @GetMapping("/products/entrepreneur/{id}")
+    public List<Product> getProductByEntrepreneur(@PathVariable Long id) {
+        log.debug("REST request to get Products by : {}", id);
+        return productRepository.findProductByEntrepreneur(id);
+    }
+
+    @GetMapping("/products/entrepreneur-all/{id}")
+    public List<Product> getProductByEntrepreneurAll(@PathVariable Long id) {
+        log.debug("REST request to get Products by : {}", id);
+        return productRepository.findProductByEntrepreneurAll(id);
     }
 }

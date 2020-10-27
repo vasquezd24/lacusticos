@@ -11,6 +11,7 @@ import { EntrepreneurService } from './entrepreneur.service';
 import { EntrepreneurComponent } from './entrepreneur.component';
 import { EntrepreneurDetailComponent } from './entrepreneur-detail.component';
 import { EntrepreneurUpdateComponent } from './entrepreneur-update.component';
+import { ProductComponent } from 'app/entities/product/product.component';
 
 @Injectable({ providedIn: 'root' })
 export class EntrepreneurResolve implements Resolve<IEntrepreneur> {
@@ -71,6 +72,18 @@ export const entrepreneurRoute: Routes = [
   {
     path: ':id/edit',
     component: EntrepreneurUpdateComponent,
+    resolve: {
+      entrepreneur: EntrepreneurResolve,
+    },
+    data: {
+      authorities: [Authority.USER],
+      pageTitle: 'lacusticoApp.entrepreneur.home.title',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'product/:id',
+    component: ProductComponent,
     resolve: {
       entrepreneur: EntrepreneurResolve,
     },

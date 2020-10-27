@@ -1,14 +1,11 @@
 package com.dva.lacustico.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A Entrepreneur.
@@ -68,10 +65,6 @@ public class Entrepreneur implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties(value = "entrepreneurs", allowSetters = true)
     private User user;
-
-    @ManyToMany(mappedBy = "entrepreneurs")
-    @JsonIgnore
-    private Set<Subscriptor> subscriptors = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -249,31 +242,6 @@ public class Entrepreneur implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Set<Subscriptor> getSubscriptors() {
-        return subscriptors;
-    }
-
-    public Entrepreneur subscriptors(Set<Subscriptor> subscriptors) {
-        this.subscriptors = subscriptors;
-        return this;
-    }
-
-    public Entrepreneur addSubscriptor(Subscriptor subscriptor) {
-        this.subscriptors.add(subscriptor);
-        subscriptor.getEntrepreneurs().add(this);
-        return this;
-    }
-
-    public Entrepreneur removeSubscriptor(Subscriptor subscriptor) {
-        this.subscriptors.remove(subscriptor);
-        subscriptor.getEntrepreneurs().remove(this);
-        return this;
-    }
-
-    public void setSubscriptors(Set<Subscriptor> subscriptors) {
-        this.subscriptors = subscriptors;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

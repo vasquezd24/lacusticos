@@ -4,11 +4,11 @@ export interface ISubscriptor {
   id?: number;
   email?: string;
   activated?: boolean;
-  entrepreneurs?: IEntrepreneur[];
+  entrepreneur?: IEntrepreneur;
 }
 
 export class Subscriptor implements ISubscriptor {
-  constructor(public id?: number, public email?: string, public activated?: boolean, public entrepreneurs?: IEntrepreneur[]) {
+  constructor(public id?: number, public email?: string, public activated?: boolean, public entrepreneur?: IEntrepreneur) {
     this.activated = this.activated || false;
   }
 }

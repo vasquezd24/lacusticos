@@ -18,12 +18,11 @@
   ],
   "relationships": [
     {
-      "relationshipType": "many-to-many",
+      "relationshipType": "many-to-one",
       "otherEntityName": "entrepreneur",
       "otherEntityRelationshipName": "subscriptor",
       "relationshipName": "entrepreneur",
-      "otherEntityField": "id",
-      "ownerSide": true
+      "otherEntityField": "id"
     }
   ],
   "changelogDate": "20201018194042",

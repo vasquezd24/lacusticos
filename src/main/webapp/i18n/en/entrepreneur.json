@@ -17,9 +17,11 @@
         "title": "Entrepreneurship"
       },
       "email": "Email",
+      "email2": "Email:",
       "name": "Name",
       "description": "Description",
       "phoneNumber": "Phone Number",
+      "phoneNumber2": "Phone Number:",
       "schedule": "Schedule",
       "picture": "Picture",
       "webSite": "Web Site",
@@ -27,10 +29,22 @@
       "instagramPage": "Instagram Page",
       "activated": "Status",
       "category": "Category",
+      "category2": "Category:",
       "user": "User",
       "subscriptor": "Subscriptor",
       "active": "Active",
-      "inactive": "Inactive"
+      "inactive": "Inactive",
+      "titlePlatf": "Delivery Platforms",
+      "contactPerson": "Contact",
+      "titleInfo": "Contact Information",
+      "titleProduct": "Products",
+      "titleContact": "Contact",
+      "titleLocation": "Locations",
+      "search": "Enter the product name",
+      "btnBack": "Back",
+      "btnEdit": "Edit",
+      "btnProduct": "Products",
+      "btnDelivery": "Delivery Platforms"
     }
   }
 }

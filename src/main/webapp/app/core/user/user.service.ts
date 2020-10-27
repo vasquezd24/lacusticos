@@ -10,6 +10,7 @@ import { IUser } from './user.model';
 export class UserService {
   public resourceUrl = SERVER_API_URL + 'api/users';
   public activeUrl = SERVER_API_URL + 'api/users/active';
+  public currentUrl = SERVER_API_URL + 'api/users/current';
 
   constructor(private http: HttpClient) {}
 
@@ -41,5 +42,10 @@ export class UserService {
   getActiveUsers(req?: any): Observable<HttpResponse<IUser[]>> {
     const options = createRequestOption(req);
     return this.http.get<IUser[]>(SERVER_API_URL + 'api/users/active', { params: options, observe: 'response' });
+  }
+
+  getCurrentUser(req?: any): Observable<HttpResponse<String>> {
+    const options = createRequestOption(req);
+    return this.http.get<String>(SERVER_API_URL + this.currentUrl, { params: options, observe: 'response' });
   }
 }

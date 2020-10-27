@@ -35,9 +35,9 @@
                     <td>{{ subscriptor.email }}</td>
                     <td>{{ subscriptor.activated }}</td>
                     <td>
-                        <span *ngFor="let entrepreneur of subscriptor.entrepreneurs; let last = last">
-                            <a class="form-control-static" [routerLink]="['/entrepreneur', entrepreneur?.id, 'view']">{{ entrepreneur.id }}</a>{{ last ? '' : ', ' }}
-                        </span>
+                        <div *ngIf="subscriptor.entrepreneur">
+                            <a [routerLink]="['/entrepreneur', subscriptor.entrepreneur?.id, 'view']" >{{ subscriptor.entrepreneur?.id }}</a>
+                        </div>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">

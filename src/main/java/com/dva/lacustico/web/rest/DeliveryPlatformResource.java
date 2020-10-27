@@ -116,4 +116,12 @@ public class DeliveryPlatformResource {
         deliveryPlatformRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
+
+
+    @GetMapping("/delivery-platforms/entrepreneur/{id}")
+    public List<DeliveryPlatform> getDeliveryPlatformByEntrepreneur(@PathVariable Long id) {
+        log.debug("REST request to get DeliveryPlatformByEntrepreneur : {}", id);
+       // Optional<DeliveryPlatform> deliveryPlatform = deliveryPlatformRepository.findDeliveryPlatformByEntrepreneur(id);
+        return deliveryPlatformRepository.findDeliveryPlatformByEntrepreneur(id);
+    }
 }

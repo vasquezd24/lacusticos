@@ -1,81 +1,196 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="entrepreneur">
-            <h2><span jhiTranslate="lacusticoApp.entrepreneur.detail.title">Entrepreneur</span> {{ entrepreneur.id }}</h2>
-
-            <hr>
-
+<div class="row justify-content-center" *ngIf="entrepreneur">
+    <div class="col-10">
+        <div>
+            <h1 class=" text-center pb-3" id="jhi-entrepreneur-heading">{{entrepreneur.name}}</h1>
+            <!--            <hr>-->
             <jhi-alert-error></jhi-alert-error>
 
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.email">Email</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.email }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.name">Name</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.name }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.description">Description</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.description }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.phoneNumber">Phone Number</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.phoneNumber }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.schedule">Schedule</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.schedule }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.picture">Picture</span></dt>
-                <dd>
-                    <div *ngIf="entrepreneur.picture">
-                        <a (click)="openFile(entrepreneur.pictureContentType, entrepreneur.picture)">
-                            <img [src]="'data:' + entrepreneur.pictureContentType + ';base64,' + entrepreneur.picture" style="max-width: 100%;" alt="entrepreneur image"/>
-                        </a>
-                        {{ entrepreneur.pictureContentType }}, {{ byteSize(entrepreneur.picture) }}
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.webSite">Web Site</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.webSite }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.facebookPage">Facebook Page</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.facebookPage }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.instagramPage">Instagram Page</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.instagramPage }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.activated">Activated</span></dt>
-                <dd>
-                    <span>{{ entrepreneur.activated }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.category">Category</span></dt>
-                <dd>
-                    <div *ngIf="entrepreneur.category">
-                        <a [routerLink]="['/category', entrepreneur.category?.id, 'view']">{{ entrepreneur.category?.id }}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.entrepreneur.user">User</span></dt>
-                <dd>
-                    {{ entrepreneur.user?.id }}
-                </dd>
-            </dl>
+        </div>
+        <div class="row justify-content-center" style="max-height: 90%">
+            <div class=" card col-3">
+                <div class="card-body">
+                    <dl class="row-md jh-entity-details">
+                        <dd>
+                            <div *ngIf="entrepreneur.picture" class="text-center">
+                                <a (click)="openFile(entrepreneur.pictureContentType, entrepreneur.picture)">
+                                    <img class="img-fluid"
+                                         [src]="'data:' + entrepreneur.pictureContentType + ';base64,' + entrepreneur.picture"/>
+                                </a>
+                            </div>
+                        </dd>
+                        <dd class="pt-3 pb-3 text-center">
+                            <h5 class="font-italic">{{entrepreneur.description}}</h5>
+                        </dd>
+                        <dd>
+                            <span class="font-weight-bold"
+                                  jhiTranslate="lacusticoApp.entrepreneur.category2">Category</span>
+                            <span>{{entrepreneur.category?.description}}</span>
+                        </dd>
+                        <dd>
+                            <span class="font-weight-bold" jhiTranslate="lacusticoApp.entrepreneur.email2">Email</span>
+                            <span>{{ entrepreneur.email }}</span>
+                        </dd>
+                        <dd>
+                            <span class="font-weight-bold" jhiTranslate="lacusticoApp.entrepreneur.phoneNumber2">Phone Number</span>
+                            <span>{{ entrepreneur.phoneNumber }}</span>
+                        </dd>
+                    </dl>
+                    <div class="text-center pt-3">
+                        <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnBack' | translate }}"
+                                (click)="previousState()"
+                                class="btn btn-outline-primary">
+                            <fa-icon icon="arrow-left"></fa-icon>&nbsp;
+                        </button>
+                        <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnEdit' | translate }}"
+                                [routerLink]="['/entrepreneur', entrepreneur.id, 'edit']"
+                                class="btn btn-outline-success">
+                            <fa-icon icon="pencil-alt"></fa-icon>&nbsp;
+                        </button>
+                        <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnProduct' | translate }}"
+                                [routerLink]="['/entrepreneur', 'product',entrepreneur.id]"
+                                class="btn btn-outline-success">
+                            <fa-icon icon="shapes"></fa-icon>&nbsp;
+                        </button>
+                        <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnDelivery' | translate }}"
+                                class="btn btn-outline-success">
+                            <fa-icon icon="truck"></fa-icon>&nbsp;
+                        </button>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
-            </button>
 
-            <button type="button"
-                    [routerLink]="['/entrepreneur', entrepreneur.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
-            </button>
+                    </div>
+                </div>
+            </div>
+            <div class="pr-3"></div>
+            <div class="card col-8">
+                <div class="card-body">
+                    <ngb-tabset>
+                        <ngb-tab>
+                            <ng-template ngbTabTitle><span jhiTranslate="lacusticoApp.entrepreneur.titleProduct"></span>
+                            </ng-template>
+                            <ng-template ngbTabContent>
+                                <div class="pt-3 row justify-content-center align-items-center">
+                                    <input type="text" class="form-control w-25 " name="search" id="search"
+                                           placeholder="{{ 'lacusticoApp.entrepreneur.search' | translate }}"
+                                    style="border: 1px solid rgba(0, 0, 0, 0.125); border-radius: 0.25rem;"/>
+                                    <button type="submit" title="Volver"
+                                            (click)="previousState()"
+                                            class="btn btn-outline-success">
+                                        <fa-icon icon="search"></fa-icon>&nbsp;
+                                    </button>
+
+                                </div>
+                                <div id="no-products" *ngIf="products?.length === 0" class="pt-5 h4">
+                                    <span
+                                        jhiTranslate="lacusticoApp.product.home.notFound">No deliveryPlatforms found</span>
+                                </div>
+                                <div class=" pt-3 col-12">
+                                    <!-- Row -->
+                                    <div class="row">
+                                        <!-- column -->
+                                        <div class="col-lg-2 pt-3" *ngFor="let product of products| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; trackBy: trackId">
+
+                                                <div class="row">
+                                                    <img class="card-img-top img-fluid col-12"
+                                                         *ngIf="product.productImageContentType ==null"
+                                                         src="../../../content/images/lacustico_products.jpg"
+                                                         alt="Card image cap"><img
+                                                        /><img/>
+                                                    <img class="card-img-top img-fluid col-12"
+                                                         *ngIf="product.productImageContentType !==null"
+                                                         [src]="'data:' + product.productImageContentType + ';base64,' + product.productImage"
+                                                         alt="Card image cap">
+                                                </div>
+                                                <div class="pt-2 pb-2 pl-2 pr-2">
+                                                    <h5 class="card-title text-center"
+                                                        style="font-size:0.8vw;">{{product.name}}</h5>
+                                                </div>
+                                            <!-- Card -->
+                                        </div>
+                                    </div>
+                                    <!-- Row -->
+                                </div>
+                                <div class="row justify-content-center pt-2">
+                                    <ngb-pagination [pageSize] = "pageSize" [collectionSize]="collectionSize" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab>
+                            <ng-template ngbTabTitle><span jhiTranslate="lacusticoApp.entrepreneur.titleContact"></span>
+                            </ng-template>
+                            <ng-template ngbTabContent>
+                                <div class="row justify-content-center pt-5">
+                                    <div class=" col-5 pt-3">
+                                        <h4 class="pb-3" jhiTranslate="lacusticoApp.entrepreneur.titleInfo">Información
+                                            de contacto</h4>
+                                        <div class="pb-2">
+                                            <dt><span jhiTranslate="lacusticoApp.entrepreneur.webSite">Web Site</span>
+                                            </dt>
+                                            <dd>
+                                                <span>{{ entrepreneur.webSite }}</span>
+                                            </dd>
+                                        </div>
+                                        <div class="pb-2">
+                                            <dt><span
+                                                jhiTranslate="lacusticoApp.entrepreneur.facebookPage">Facebook Page</span>
+                                            </dt>
+                                            <dd>
+                                                <span>{{ entrepreneur.facebookPage }}</span>
+                                            </dd>
+                                        </div>
+                                        <div class="pb-2">
+                                            <dt><span
+                                                jhiTranslate="lacusticoApp.entrepreneur.instagramPage">Instagram Page</span>
+                                            </dt>
+                                            <dd>
+                                                <span>{{ entrepreneur.instagramPage }}</span>
+                                            </dd>
+                                        </div>
+                                        <div class="pb-2">
+                                            <dt><span jhiTranslate="lacusticoApp.entrepreneur.contactPerson">User</span>
+                                            </dt>
+                                            <dd>
+                                                {{ entrepreneur.user?.firstName }} {{entrepreneur.user?.lastName}}
+                                            </dd>
+                                        </div>
+                                    </div>
+                                    <div class=" col-5 pt-3">
+                                        <div class="pb-3">
+                                            <h4 jhiTranslate="lacusticoApp.entrepreneur.titlePlatf"></h4>
+                                        </div>
+
+                                        <div id="no-result" *ngIf="deliveryPlatforms?.length === 0">
+                                            <dd><span jhiTranslate="lacusticoApp.deliveryPlatform.home.notFound">No deliveryPlatforms found</span>
+                                            </dd>
+                                        </div>
+                                        <ng-container
+                                            *ngFor="let deliveryPlatform of deliveryPlatforms ;trackBy: trackId">
+                                            <dd class="pb-2"><span>{{ deliveryPlatform.name }}</span></dd>
+
+                                        </ng-container>
+                                    </div>
+                                </div>
+
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab>
+                            <ng-template ngbTabTitle><span
+                                jhiTranslate="lacusticoApp.entrepreneur.titleLocation"></span></ng-template>
+                            <ng-template ngbTabContent>
+                                <p class="p-t-20">Raw denim you probably haven't heard of them jean shorts Austin.
+                                    Nesciunt
+                                    tofu stumptown aliqua, retro synth
+                                    master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.
+                                    Reprehenderit butcher retro keffiyeh
+                                    dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid.
+                                    Aliquip placeat salvia cillum
+                                    iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi
+                                    qui.</p>
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

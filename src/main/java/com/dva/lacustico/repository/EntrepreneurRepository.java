@@ -29,4 +29,6 @@ public interface EntrepreneurRepository extends JpaRepository<Entrepreneur, Long
 
     @Query("select entrepreneur from Entrepreneur entrepreneur where entrepreneur.user.login = ?#{principal.username}")
     List<Entrepreneur> findByUserIsCurrentUser();
+
+
 }

@@ -7,6 +7,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IProduct } from 'app/shared/model/product.model';
 import { ProductService } from './product.service';
 import { ProductDeleteDialogComponent } from './product-delete-dialog.component';
+import { ActivatedRoute } from '@angular/router';
+import { ICategory } from 'app/shared/model/category.model';
 
 @Component({
   selector: 'jhi-product',
@@ -15,18 +17,38 @@ import { ProductDeleteDialogComponent } from './product-delete-dialog.component'
 export class ProductComponent implements OnInit, OnDestroy {
   products?: IProduct[];
   eventSubscriber?: Subscription;
+  pageSize = 10;
+  page = 1;
+  collectionSize = 0;
 
   constructor(
     protected productService: ProductService,
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    protected activatedRoute: ActivatedRoute
   ) {}
 
   loadAll(): void {
-    this.productService.query().subscribe((res: HttpResponse<IProduct[]>) => (this.products = res.body || []));
-  }
+    const id: string[] = this.activatedRoute.snapshot.paramMap.getAll('id');
 
+    if (this.activatedRoute.snapshot.paramMap.getAll('id').length !== 0) {
+      this.productService
+        .findByEntrepreneurAll(Number(id))
+        .subscribe(
+          (res: HttpResponse<IProduct[]>) => ((this.products = res.body || []), (this.collectionSize = Number(this.products?.length)))
+        );
+    } else {
+      this.productService
+        .query()
+        .subscribe(
+          (res: HttpResponse<IProduct[]>) => ((this.products = res.body || []), (this.collectionSize = Number(this.products?.length)))
+        );
+    }
+  }
+  previousState(): void {
+    window.history.back();
+  }
   ngOnInit(): void {
     this.loadAll();
     this.registerChangeInProducts();
@@ -58,5 +80,9 @@ export class ProductComponent implements OnInit, OnDestroy {
   delete(product: IProduct): void {
     const modalRef = this.modalService.open(ProductDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.product = product;
+  }
+
+  setActive(category: ICategory, isActivated: boolean): void {
+    this.productService.update({ ...category, activated: isActivated }).subscribe(() => this.loadAll());
   }
 }

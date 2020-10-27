@@ -38,6 +38,10 @@ import {
   faKey,
   faCogs,
   faCog,
+  faGlobe,
+  faTruck,
+  faObjectGroup,
+  faShapes,
 } from '@fortawesome/free-solid-svg-icons';
 
 export const fontAwesomeIcons = [
@@ -81,4 +85,8 @@ export const fontAwesomeIcons = [
   faCogs,
   faCog,
   faThList,
+  faGlobe,
+  faTruck,
+  faObjectGroup,
+  faShapes,
 ];

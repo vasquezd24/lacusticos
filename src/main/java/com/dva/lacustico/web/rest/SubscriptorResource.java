@@ -83,13 +83,12 @@ public class SubscriptorResource {
     /**
      * {@code GET  /subscriptors} : get all the subscriptors.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of subscriptors in body.
      */
     @GetMapping("/subscriptors")
-    public List<Subscriptor> getAllSubscriptors(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public List<Subscriptor> getAllSubscriptors() {
         log.debug("REST request to get all Subscriptors");
-        return subscriptorRepository.findAllWithEagerRelationships();
+        return subscriptorRepository.findAll();
     }
 
     /**
@@ -101,7 +100,7 @@ public class SubscriptorResource {
     @GetMapping("/subscriptors/{id}")
     public ResponseEntity<Subscriptor> getSubscriptor(@PathVariable Long id) {
         log.debug("REST request to get Subscriptor : {}", id);
-        Optional<Subscriptor> subscriptor = subscriptorRepository.findOneWithEagerRelationships(id);
+        Optional<Subscriptor> subscriptor = subscriptorRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(subscriptor);
     }
 

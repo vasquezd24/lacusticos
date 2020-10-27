@@ -52,9 +52,9 @@ export class ProductUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ product }) => {
       this.updateForm(product);
 
-      this.categoryService.query().subscribe((res: HttpResponse<ICategory[]>) => (this.categories = res.body || []));
+      this.categoryService.getByTypeProd().subscribe((res: HttpResponse<ICategory[]>) => (this.categories = res.body || []));
 
-      this.entrepreneurService.query().subscribe((res: HttpResponse<IEntrepreneur[]>) => (this.entrepreneurs = res.body || []));
+      this.entrepreneurService.findByCurrentUser().subscribe((res: HttpResponse<IEntrepreneur[]>) => (this.entrepreneurs = res.body || []));
     });
   }
 

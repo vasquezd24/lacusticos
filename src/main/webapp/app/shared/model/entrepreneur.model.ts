@@ -1,6 +1,5 @@
 import { ICategory } from 'app/shared/model/category.model';
 import { IUser } from 'app/core/user/user.model';
-import { ISubscriptor } from 'app/shared/model/subscriptor.model';
 
 export interface IEntrepreneur {
   id?: number;
@@ -17,7 +16,6 @@ export interface IEntrepreneur {
   activated?: boolean;
   category?: ICategory;
   user?: IUser;
-  subscriptors?: ISubscriptor[];
 }
 
 export class Entrepreneur implements IEntrepreneur {
@@ -35,8 +33,7 @@ export class Entrepreneur implements IEntrepreneur {
     public instagramPage?: string,
     public activated?: boolean,
     public category?: ICategory,
-    public user?: IUser,
-    public subscriptors?: ISubscriptor[]
+    public user?: IUser
   ) {
     this.activated = this.activated || false;
   }

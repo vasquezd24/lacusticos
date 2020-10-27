@@ -22,23 +22,15 @@
             <column name="activated" type="boolean">
                 <constraints nullable="false" />
             </column>
+            <column name="entrepreneur_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>
 
     <changeSet id="20201018194042-1-relations" author="jhipster">
 
-        <createTable tableName="subscriptor_entrepreneur">
-            <column name="entrepreneur_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="subscriptor_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="subscriptor_id, entrepreneur_id" tableName="subscriptor_entrepreneur"/>
-        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 

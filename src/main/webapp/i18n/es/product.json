@@ -2,27 +2,27 @@
   "lacusticoApp": {
     "product": {
       "home": {
-        "title": "Products",
-        "createLabel": "Crear nuevo Product",
-        "createOrEditLabel": "Crear o editar Product",
-        "notFound": "Ningún Products encontrado"
+        "title": "Productos",
+        "createLabel": "Producto",
+        "createOrEditLabel": "Producto",
+        "notFound": "Ningún producto encontrado."
       },
-      "created": "Un nuevo Product ha sido creado con el identificador {{ param }}",
-      "updated": "Un Product ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Product ha sido eliminado con el identificador {{ param }}",
+      "created": "Producto creado.",
+      "updated": "Producto actualizado.",
+      "deleted": "Producto eliminado.",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Product {{ id }}?"
+        "question": "¿Seguro que quiere eliminarlo?"
       },
       "detail": {
-        "title": "Product"
+        "title": "Producto"
       },
-      "name": "Name",
-      "description": "Description",
-      "price": "Price",
-      "productImage": "Product Image",
-      "activated": "Activated",
-      "category": "Category",
-      "entrepreneur": "Entrepreneur"
+      "name": "Nombre",
+      "description": "Descripción",
+      "price": "Precio",
+      "productImage": "Imagen",
+      "activated": "Estado",
+      "category": "Categoría",
+      "entrepreneur": "Emprendimiento"
     }
   }
 }

@@ -18,9 +18,9 @@
                 </dd>
                 <dt><span jhiTranslate="lacusticoApp.subscriptor.entrepreneur">Entrepreneur</span></dt>
                 <dd>
-                    <span *ngFor="let entrepreneur of subscriptor.entrepreneurs; let last = last">
-                        <a [routerLink]="['/entrepreneur', entrepreneur?.id, 'view']">{{ entrepreneur.id }}</a>{{ last ? '' : ', ' }}
-                    </span>
+                    <div *ngIf="subscriptor.entrepreneur">
+                        <a [routerLink]="['/entrepreneur', subscriptor.entrepreneur?.id, 'view']">{{ subscriptor.entrepreneur?.id }}</a>
+                    </div>
                 </dd>
             </dl>
 

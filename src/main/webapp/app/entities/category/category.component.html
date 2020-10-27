@@ -5,6 +5,11 @@
                 [routerLink]="['/category/new']">
             <fa-icon icon="plus"></fa-icon>
         </button>
+        <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnBack' | translate }}"
+                (click)="previousState()"
+                class="btn btn-outline-primary float-right jh-create-entity create-category">
+            <fa-icon icon="arrow-left"></fa-icon>&nbsp;
+        </button>
     </h2>
 
     <jhi-alert-error></jhi-alert-error>
@@ -25,7 +30,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let category of categories ;trackBy: trackId">
+        <tr *ngFor="let category of categories  | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize ;trackBy: trackId">
             <td>{{ category.description }}</td>
             <td>{{ category.type }}</td>
             <td>
@@ -53,4 +58,10 @@
         </tr>
         </tbody>
     </table>
+</div>
+    <div class="row justify-content-center">
+        <ngb-pagination [pageSize] = "pageSize" [collectionSize]="collectionSize" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>
+
+    </div>
+
 </div>

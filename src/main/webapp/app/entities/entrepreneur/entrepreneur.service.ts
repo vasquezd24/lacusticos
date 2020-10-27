@@ -35,4 +35,9 @@ export class EntrepreneurService {
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
+
+  findByCurrentUser(req?: any): Observable<HttpResponse<IEntrepreneur[]>> {
+    const options = createRequestOption(req);
+    return this.http.get<IEntrepreneur[]>(SERVER_API_URL + 'api/entrepreneurs-current', { params: options, observe: 'response' });
+  }
 }

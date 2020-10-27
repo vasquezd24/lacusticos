@@ -6,25 +6,18 @@ import com.dva.lacustico.repository.SubscriptorRepository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -32,7 +25,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link SubscriptorResource} REST controller.
  */
 @SpringBootTest(classes = LacusticoApp.class)
-@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 public class SubscriptorResourceIT {
@@ -45,9 +37,6 @@ public class SubscriptorResourceIT {
 
     @Autowired
     private SubscriptorRepository subscriptorRepository;
-
-    @Mock
-    private SubscriptorRepository subscriptorRepositoryMock;
 
     @Autowired
     private EntityManager em;
@@ -178,26 +167,6 @@ public class SubscriptorResourceIT {
             .andExpect(jsonPath("$.[*].activated").value(hasItem(DEFAULT_ACTIVATED.booleanValue())));
     }
     
-    @SuppressWarnings({"unchecked"})
-    public void getAllSubscriptorsWithEagerRelationshipsIsEnabled() throws Exception {
-        when(subscriptorRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restSubscriptorMockMvc.perform(get("/api/subscriptors?eagerload=true"))
-            .andExpect(status().isOk());
-
-        verify(subscriptorRepositoryMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
-    @SuppressWarnings({"unchecked"})
-    public void getAllSubscriptorsWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(subscriptorRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restSubscriptorMockMvc.perform(get("/api/subscriptors?eagerload=true"))
-            .andExpect(status().isOk());
-
-        verify(subscriptorRepositoryMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
     @Test
     @Transactional
     public void getSubscriptor() throws Exception {

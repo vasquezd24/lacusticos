@@ -30,6 +30,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -224,5 +225,20 @@ public class UserResource {
     @GetMapping("/users/active")
     public List <User> getActiveUsers(){
         return  userRepository.findActiveUser();
+    }
+
+    @GetMapping("/users/current")
+    public String getCurrentUserLogin() {
+        org.springframework.security.core.context.SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        String login = "";
+        if (authentication != null)
+            if (authentication.getPrincipal() instanceof UserDetails){
+                login = ((UserDetails) authentication.getPrincipal()).getUsername();
+            }
+            else if (authentication.getPrincipal() instanceof String)
+                login = (String) authentication.getPrincipal();
+
+        return login;
     }
 }
