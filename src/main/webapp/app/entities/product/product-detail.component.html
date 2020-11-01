@@ -1,63 +1,78 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center pt-3">
     <div class="col-8">
         <div *ngIf="product">
-            <h2><span jhiTranslate="lacusticoApp.product.detail.title">Product</span> {{ product.id }}</h2>
-
-            <hr>
+            <h1 class="text-center pb-3"><span>{{ product.name }}</span></h1>
 
             <jhi-alert-error></jhi-alert-error>
+            <!--border: 1px solid rgba(0, 0, 0, 0.125);
+                border-radius: 0.25rem;-->
+            <div class="row h-100 justify-content-center" style="max-height: 90%">
+                <div class="  col-7 my-auto">
+                    <div class="card-body">
+                        <dl class="row-md jh-entity-details">
+                            <dd>
+                                <div class="row">
+                                    <img class="card-img-top img-fluid col-12"
+                                         *ngIf="product.productImageContentType ==null"
+                                         src="../../../content/images/lacusticos_products.jpg"
+                                         alt="Producto"><img/>
 
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="lacusticoApp.product.name">Name</span></dt>
-                <dd>
-                    <span>{{ product.name }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.product.description">Description</span></dt>
-                <dd>
-                    <span>{{ product.description }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.product.price">Price</span></dt>
-                <dd>
-                    <span>{{ product.price }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.product.productImage">Product Image</span></dt>
-                <dd>
-                    <div *ngIf="product.productImage">
-                        <a (click)="openFile(product.productImageContentType, product.productImage)">
-                            <img [src]="'data:' + product.productImageContentType + ';base64,' + product.productImage" style="max-width: 100%;" alt="product image"/>
-                        </a>
-                        {{ product.productImageContentType }}, {{ byteSize(product.productImage) }}
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.product.activated">Activated</span></dt>
-                <dd>
-                    <span>{{ product.activated }}</span>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.product.category">Category</span></dt>
-                <dd>
-                    <div *ngIf="product.category">
-                        <a [routerLink]="['/category', product.category?.id, 'view']">{{ product.category?.id }}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="lacusticoApp.product.entrepreneur">Entrepreneur</span></dt>
-                <dd>
-                    <div *ngIf="product.entrepreneur">
-                        <a [routerLink]="['/entrepreneur', product.entrepreneur?.id, 'view']">{{ product.entrepreneur?.id }}</a>
-                    </div>
-                </dd>
-            </dl>
+                                    <img class="card-img-top img-fluid col-12"
+                                         *ngIf="product.productImageContentType !==null"
+                                         [src]="'data:' + product.productImageContentType + ';base64,' + product.productImage"
+                                         alt="Producto"><img/>
+                                </div>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
-            </button>
 
-            <button type="button"
-                    [routerLink]="['/product', product.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
-            </button>
+                            </dd>
+                        </dl>
+
+                    </div>
+                </div>
+                <div class="pr-3"></div>
+                <div class=" col-4 my-auto">
+
+                        <dl class="jh-entity-details my-auto" style="font-size: 1.2rem;">
+
+                            <dt><span jhiTranslate="lacusticoApp.product.description">Description</span></dt>
+                            <dd class="pb-2">
+                                <span>{{ product.description }}</span>
+                            </dd>
+                            <dt><span jhiTranslate="lacusticoApp.product.price">Price</span></dt>
+                            <dd class="pb-2">
+                                <span>₡{{ product.price }}</span>
+                            </dd>
+
+                            <dt><span jhiTranslate="lacusticoApp.product.category">Category</span></dt>
+                            <dd class="pb-2">
+                                <div *ngIf="product.category">
+                                    <span> {{ product.category?.description }}</span>
+                                </div>
+                            </dd>
+                            <dt><span jhiTranslate="lacusticoApp.product.entrepreneur">Entrepreneur</span></dt>
+                            <dd class="pb-2">
+                                <div *ngIf="product.entrepreneur">
+                                    <a [routerLink]="['/entrepreneur', product.entrepreneur?.id, 'view']">{{ product.entrepreneur?.name }}</a>
+                                </div>
+                            </dd>
+                        </dl>
+                </div>
+            </div>
+            <div class="text-center pb-3">
+                <button type="submit"
+                        (click)="previousState()"
+                        class="btn btn-outline-primary">
+                    <fa-icon icon="arrow-left"></fa-icon>
+                </button>
+
+                <button type="button"
+                        [routerLink]="['/product', product.id, 'edit']"
+                        class="btn btn-outline-success">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                </button>
+            </div>
+
+
         </div>
     </div>
 </div>

@@ -37,6 +37,9 @@ export class SettingsComponent implements OnInit {
       }
     });
   }
+  previousState(): void {
+    window.history.back();
+  }
 
   save(): void {
     this.success = false;
@@ -54,6 +57,7 @@ export class SettingsComponent implements OnInit {
       if (this.account.langKey !== this.languageService.getCurrentLanguage()) {
         this.languageService.changeLanguage(this.account.langKey);
       }
+      this.previousState();
     });
   }
 }

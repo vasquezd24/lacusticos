@@ -1,7 +1,7 @@
 <div>
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <h2 jhiTranslate="settings.title" [translateValues]="{ username: account.login }" *ngIf="account">User settings for [<b>{{ account.login }}</b>]</h2>
+        <div class="col-md-6">
+            <h2 class=" text-center pb-3" jhiTranslate="settings.title" *ngIf="account"></h2>
 
             <div class="alert alert-success" *ngIf="success" jhiTranslate="settings.messages.success">
                 <strong>Settings saved!</strong>
@@ -62,6 +62,7 @@
                     </div>
                 </div>
 
+<!--
                 <div class="form-group">
                     <label class="form-control-label" for="email" jhiTranslate="global.form.email.label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="{{ 'global.form.email.placeholder' | translate }}"
@@ -93,7 +94,7 @@
                         </small>
                     </div>
                 </div>
-
+-->
                 <div class="form-group" *ngIf="languages && languages.length > 0">
                     <label for="langKey" jhiTranslate="settings.form.language">Language</label>
                     <select class="form-control" id="langKey" name="langKey" formControlName="langKey">
@@ -101,7 +102,16 @@
                     </select>
                 </div>
 
-                <button type="submit" [disabled]="settingsForm.invalid" class="btn btn-primary" jhiTranslate="settings.form.button">Save</button>
+                <div class="text-center pt-3">
+                    <button type="submit" [disabled]="settingsForm.invalid" class="btn btn-outline-success">
+                        &nbsp;<span jhiTranslate="settings.form.button">Save</span>
+                    </button>
+
+                    <button type="button" id="cancel-save" class="btn btn-outline-danger" (click)="previousState()">
+                        &nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                    </button>
+
+                </div>
             </form>
         </div>
     </div>

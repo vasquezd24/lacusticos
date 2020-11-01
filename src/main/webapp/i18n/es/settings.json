@@ -1,13 +1,14 @@
 {
   "settings": {
-    "title": "Ajustes del usuario [<strong>{{username}}</strong>]",
+    "title": "Usuario",
     "form": {
       "firstname": "Nombre",
       "firstname.placeholder": "Su nombre",
       "lastname": "Apellidos",
       "lastname.placeholder": "Sus apellidos",
       "language": "Idioma",
-      "button": "Guardar"
+      "button": "Guardar",
+      "btnPassword": "Contraseña"
     },
     "messages": {
       "error": {

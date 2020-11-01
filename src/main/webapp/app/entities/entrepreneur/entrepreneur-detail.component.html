@@ -87,22 +87,23 @@
                                     <!-- Row -->
                                     <div class="row">
                                         <!-- column -->
-                                        <div class="col-lg-2 pt-3" *ngFor="let product of products| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; trackBy: trackId">
-
+                                        <div class="col-lg-2 pt-3" *ngFor="let product of products; trackBy: trackId">
                                             <div class="row">
                                                 <img class="card-img-top img-fluid col-12"
                                                      *ngIf="product.productImageContentType ==null"
-                                                     src="../../../content/images/lacustico_products.jpg"
-                                                     alt="Card image cap"><img
-                                            /><img/>
+                                                     src="../../../content/images/lacusticos_products.jpg"
+                                                     alt="Card image cap"><img/>
                                                 <img class="card-img-top img-fluid col-12"
                                                      *ngIf="product.productImageContentType !==null"
                                                      [src]="'data:' + product.productImageContentType + ';base64,' + product.productImage"
-                                                     alt="Card image cap">
+                                                     alt="Card image cap"><img/>
                                             </div>
                                             <div class="pt-2 pb-2 pl-2 pr-2">
                                                 <h5 class="card-title text-center"
-                                                    style="font-size:0.8vw;">{{product.name}}</h5>
+                                                    style="font-size:0.8vw;">
+                                                    <a [routerLink]="['/product', product.id, 'view']">
+                                                        {{product.name}}
+                                                    </a></h5>
                                             </div>
                                             <!-- Card -->
                                         </div>
