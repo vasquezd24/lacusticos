@@ -34,7 +34,7 @@
                     <td>{{ deliveryPlatform.name }}</td>
                     <td>
                         <div *ngIf="deliveryPlatform.entrepreneur">
-                            <a [routerLink]="['/entrepreneur', deliveryPlatform.entrepreneur?.id, 'view']" >{{ deliveryPlatform.entrepreneur?.id }}</a>
+                            <a [routerLink]="['/entrepreneur', deliveryPlatform.entrepreneur?.id, 'view']" >{{ deliveryPlatform.entrepreneur?.name }}</a>
                         </div>
                     </td>
                     <td class="text-right">
