@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 class=" text-center pb-3" id="jhi-product-heading"
+            <h2 class=" text-center pb-3"id="jhi-product-heading"
                 jhiTranslate="lacusticoApp.product.home.createOrEditLabel">
                 Create or edit a Product</h2>
             <jhi-alert-error></jhi-alert-error>
@@ -135,7 +135,6 @@
                         <button type="button" id="cancel-save" class="btn btn-outline-danger" (click)="previousState()">
                             <span jhiTranslate="entity.action.cancel">Cancel</span>
                         </button>
-
 
                     </div>
 

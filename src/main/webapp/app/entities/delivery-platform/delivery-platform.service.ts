@@ -13,6 +13,7 @@ type EntityArrayResponseType = HttpResponse<IDeliveryPlatform[]>;
 export class DeliveryPlatformService {
   public resourceUrl = SERVER_API_URL + 'api/delivery-platforms';
   public entreURL = SERVER_API_URL + 'api/delivery-platforms/entrepreneur';
+  public uberURL = SERVER_API_URL + 'api/delivery-platforms/uber/entrepreneur';
 
   constructor(protected http: HttpClient) {}
 

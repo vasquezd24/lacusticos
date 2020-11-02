@@ -1,12 +1,15 @@
 <div>
-    <h2 id="page-heading">
+    <h2 id="page-heading" class="text-center pb-4">
         <span jhiTranslate="lacusticoApp.deliveryPlatform.home.title">Delivery Platforms</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-delivery-platform" [routerLink]="['/delivery-platform/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-delivery-platform"
+                [routerLink]="['/delivery-platform/new']">
             <fa-icon icon="plus"></fa-icon>
-            <span  jhiTranslate="lacusticoApp.deliveryPlatform.home.createLabel">
-            Create a new Delivery Platform
-            </span>
+        </button>
+        <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnBack' | translate }}"
+                (click)="previousState()"
+                class="btn btn-outline-success float-right jh-create-entity create-category">
+            <fa-icon icon="arrow-left"></fa-icon>&nbsp;
         </button>
     </h2>
 
@@ -21,46 +24,41 @@
     <div class="table-responsive" id="entities" *ngIf="deliveryPlatforms && deliveryPlatforms.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
-                <tr>
-                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
-                    <th scope="col" ><span jhiTranslate="lacusticoApp.deliveryPlatform.name">Name</span></th>
-                    <th scope="col" ><span jhiTranslate="lacusticoApp.deliveryPlatform.entrepreneur">Entrepreneur</span></th>
-                    <th scope="col"></th>
-                </tr>
+            <tr>
+                <th scope="col"><span jhiTranslate="lacusticoApp.deliveryPlatform.name">Name</span></th>
+                <th scope="col"><span jhiTranslate="lacusticoApp.deliveryPlatform.entrepreneur">Entrepreneur</span></th>
+                <th scope="col"></th>
+            </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let deliveryPlatform of deliveryPlatforms ;trackBy: trackId">
-                    <td><a [routerLink]="['/delivery-platform', deliveryPlatform.id, 'view']">{{ deliveryPlatform.id }}</a></td>
-                    <td>{{ deliveryPlatform.name }}</td>
-                    <td>
-                        <div *ngIf="deliveryPlatform.entrepreneur">
-                            <a [routerLink]="['/entrepreneur', deliveryPlatform.entrepreneur?.id, 'view']" >{{ deliveryPlatform.entrepreneur?.name }}</a>
-                        </div>
-                    </td>
-                    <td class="text-right">
-                        <div class="btn-group">
-                            <button type="submit"
-                                    [routerLink]="['/delivery-platform', deliveryPlatform.id, 'view']"
-                                    class="btn btn-info btn-sm">
-                                <fa-icon icon="eye"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                            </button>
+            <tr *ngFor="let deliveryPlatform of deliveryPlatforms ;trackBy: trackId">
+                <td>{{ deliveryPlatform.name }}</td>
+                <td>
+                    <div *ngIf="deliveryPlatform.entrepreneur">
+                        <a [routerLink]="['/entrepreneur', deliveryPlatform.entrepreneur?.id, 'view']">{{ deliveryPlatform.entrepreneur?.name }}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/delivery-platform', deliveryPlatform.id, 'view']"
+                                class="btn btn-info btn-sm">
+                            <fa-icon icon="eye"></fa-icon>
+                        </button>
 
-                            <button type="submit"
-                                    [routerLink]="['/delivery-platform', deliveryPlatform.id, 'edit']"
-                                    class="btn btn-primary btn-sm">
-                                <fa-icon icon="pencil-alt"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                            </button>
+                        <button type="submit"
+                                [routerLink]="['/delivery-platform', deliveryPlatform.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon icon="pencil-alt"></fa-icon>
+                        </button>
 
-                            <button type="submit" (click)="delete(deliveryPlatform)"
-                                    class="btn btn-danger btn-sm">
-                                <fa-icon icon="times"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                        <button type="submit" (click)="delete(deliveryPlatform)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon icon="times"></fa-icon>
+                        </button>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

@@ -1,7 +1,127 @@
+<!--
+<div class="container justify-content-center pt-5">
+    <form class="col-12" name="deliveryForm" [formGroup]="deliveryForm" role="form" >
+        <h2 class=" text-center pb-3" id="jhi-entrepreneur-heading"
+            jhiTranslate="lacusticoApp.deliveryPlatform.home.title">Create or
+            edit a Entrepreneur</h2>
+        &lt;!&ndash;        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+                    <h2 id="jhi-delivery-platform-heading" jhiTranslate="lacusticoApp.deliveryPlatform.home.createOrEditLabel">Create or edit a Delivery Platform</h2>
+
+                    <div>
+                        <jhi-alert-error></jhi-alert-error>
+
+                        <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                            <label for="id" jhiTranslate="global.field.id">ID</label>
+                            <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-control-label" jhiTranslate="lacusticoApp.deliveryPlatform.name" for="field_name">Name</label>
+                            <input type="text" class="form-control" name="name" id="field_name"
+                                   formControlName="name"/>
+                            <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-control-label" jhiTranslate="lacusticoApp.deliveryPlatform.entrepreneur" for="field_entrepreneur">Entrepreneur</label>
+                            <select class="form-control" id="field_entrepreneur" name="entrepreneur" formControlName="entrepreneur">
+                                <option [ngValue]="null"></option>
+                                <option [ngValue]="entrepreneurOption.id === editForm.get('entrepreneur')!.value?.id ? editForm.get('entrepreneur')!.value : entrepreneurOption" *ngFor="let entrepreneurOption of entrepreneurs; trackBy: trackById">{{ entrepreneurOption.id }}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                            <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                        </button>
+
+                        <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                            <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                        </button>
+                    </div>
+                </form>&ndash;&gt;
+            <div class="row h-100 text-center pt-5">
+                <div class="col-3 my-auto">
+                    &lt;!&ndash;Uber eats &ndash;&gt;
+                    <div class="row form-group">
+                        <div class="col-12 text-center">
+                            <img class="pb-3" style="height: 200px; width: 200px;"
+                                 src="../../../content/images/uber-eats.jpg"/>
+                        </div>
+                        <div class="col-12 text-center pt-3">
+                            <input type="checkbox" class="form-control" name="uber"
+                                   id="field_uber" formControlName="uber"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    &lt;!&ndash;Glovo&ndash;&gt;
+                    <div class="row form-group">
+                        <div class="col-12 text-center">
+                            <img class="pb-3" style="height: 200px; width: 200px;"
+                                 src="../../../content/images/glovo.png"/>
+                        </div>
+                        <div class="col-12 text-center pt-3">
+                            <input type="checkbox" class="form-control" name="glovo"
+                                   id="field_glovo" formControlName="glovo"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    &lt;!&ndash;Rappi&ndash;&gt;
+                    <div class="row form-group">
+                        <div class="col-12 text-center">
+                            <img class="pb-3" style="height: 200px; width: 200px;"
+                                 src="../../../content/images/rappi.png"/>
+                        </div>
+                        <div class="col-12 text-center pt-3">
+                            <input type="checkbox" class="form-control" name="rappi"
+                                   id="field_rappi" formControlName="rappi"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    &lt;!&ndash;Correo de CR&ndash;&gt;
+                    <div class="row form-group">
+                        <div class="col-12 text-center">
+                            <img class="pb-3" style="height: 200px; width: 200px;"
+                                 src="../../../content/images/correos.png"/>
+                        </div>
+                        <div class="col-12 text-center pt-3">
+                            <input type="checkbox" class="form-control" name="correos"
+                                   id="field_correos" formControlName="correos"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class=" col-12 pt-5 text-center">
+
+            <button type="submit" id="save-entity"
+                    class="btn btn-outline-success">
+                <span jhiTranslate="entity.action.save">Save</span>
+            </button>
+
+            <button type="button" id="cancel-save" class="btn btn-outline-danger"
+                    (click)="previousState()">
+                <span jhiTranslate="entity.action.cancel">Cancel</span>
+            </button>
+
+        </div>
+    </form>
+
+</div>-->
+
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-6">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-delivery-platform-heading" jhiTranslate="lacusticoApp.deliveryPlatform.home.createOrEditLabel">Create or edit a Delivery Platform</h2>
+            <h2 class=" text-center pb-3" id="jhi-delivery-platform-heading" jhiTranslate="lacusticoApp.deliveryPlatform.home.createOrEditLabel">Create or edit a Delivery Platform</h2>
 
             <div>
                 <jhi-alert-error></jhi-alert-error>
@@ -13,12 +133,21 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="lacusticoApp.deliveryPlatform.name" for="field_name">Name</label>
-                    <input type="text" class="form-control" name="name" id="field_name"
-                           formControlName="name"/>
+                    <select class="form-control" class="form-control" name="name" id="field_name"
+                            formControlName="name">
+                        <option value="Uber Eats" selected="selected" >Uber Eats</option>
+                        <option value="Glovo" >Glovo</option>
+                        <option value="Rappi" >Rappi</option>
+                        <option value="Correos de Costa Rica">Correos de Costa Rica</option>
+                    </select>
+
+
+
+
                     <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                            This field is required.
                         </small>
                     </div>
                 </div>
@@ -27,20 +156,23 @@
                     <label class="form-control-label" jhiTranslate="lacusticoApp.deliveryPlatform.entrepreneur" for="field_entrepreneur">Entrepreneur</label>
                     <select class="form-control" id="field_entrepreneur" name="entrepreneur" formControlName="entrepreneur">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="entrepreneurOption.id === editForm.get('entrepreneur')!.value?.id ? editForm.get('entrepreneur')!.value : entrepreneurOption" *ngFor="let entrepreneurOption of entrepreneurs; trackBy: trackById">{{ entrepreneurOption.id }}</option>
+                        <option [ngValue]="entrepreneurOption.id === editForm.get('entrepreneur')!.value?.id ? editForm.get('entrepreneur')!.value : entrepreneurOption" *ngFor="let entrepreneurOption of entrepreneurs; trackBy: trackById">{{ entrepreneurOption.name }}</option>
                     </select>
                 </div>
             </div>
 
-            <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
+            <div class=" col-12 pt-1 text-center">
 
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-outline-success">
+                    <span jhiTranslate="entity.action.save">Save</span>
+                </button>
+                <button type="button" id="cancel-save" class="btn btn-outline-danger" (click)="previousState()">
+                   <span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
             </div>
         </form>
     </div>
 </div>
+
+
+

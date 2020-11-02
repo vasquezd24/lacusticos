@@ -4,14 +4,14 @@
       "home": {
         "title": "Delivery Platforms",
         "createLabel": "Create a new Delivery Platform",
-        "createOrEditLabel": "Create or edit a Delivery Platform",
+        "createOrEditLabel": "Delivery Platforms",
         "notFound": "No Delivery Platforms found"
       },
-      "created": "A new Delivery Platform is created with identifier {{ param }}",
-      "updated": "A Delivery Platform is updated with identifier {{ param }}",
-      "deleted": "A Delivery Platform is deleted with identifier {{ param }}",
+      "created": "Delivery Platform created",
+      "updated": "Delivery Platform updated",
+      "deleted": "Delivery Platform deleted",
       "delete": {
-        "question": "Are you sure you want to delete Delivery Platform {{ id }}?"
+        "question": "Are you sure you want to delete it?"
       },
       "detail": {
         "title": "Delivery Platform"

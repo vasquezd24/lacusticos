@@ -1,7 +1,10 @@
 package com.dva.lacustico.web.rest;
 
 import com.dva.lacustico.domain.DeliveryPlatform;
+import com.dva.lacustico.domain.Product;
 import com.dva.lacustico.repository.DeliveryPlatformRepository;
+import com.dva.lacustico.security.AuthoritiesConstants;
+import com.dva.lacustico.security.SecurityUtils;
 import com.dva.lacustico.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -88,7 +91,13 @@ public class DeliveryPlatformResource {
     @GetMapping("/delivery-platforms")
     public List<DeliveryPlatform> getAllDeliveryPlatforms() {
         log.debug("REST request to get all DeliveryPlatforms");
-        return deliveryPlatformRepository.findAll();
+        List<DeliveryPlatform> result;
+        if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)){
+            result = deliveryPlatformRepository.findAll();
+        }else{
+            result = deliveryPlatformRepository.findByUserIsCurrentUser();
+        }
+        return result;
     }
 
     /**

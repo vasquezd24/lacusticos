@@ -2,22 +2,22 @@
   "lacusticoApp": {
     "deliveryPlatform": {
       "home": {
-        "title": "Delivery Platforms",
+        "title": "Plataforma de entrega",
         "createLabel": "Crear nuevo Delivery Platform",
-        "createOrEditLabel": "Crear o editar Delivery Platform",
-        "notFound": "Ningún Delivery Platforms encontrado"
+        "createOrEditLabel": "Plataforma de entrega",
+        "notFound": "Ninguna Plataforma de Entrega encontrada"
       },
-      "created": "Un nuevo Delivery Platform ha sido creado con el identificador {{ param }}",
-      "updated": "Un Delivery Platform ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Delivery Platform ha sido eliminado con el identificador {{ param }}",
+      "created": "Plataforma de entrega creada.",
+      "updated": "Plataforma de entrega modificada.",
+      "deleted": "Plataforma de entrega eliminada.",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Delivery Platform {{ id }}?"
+        "question": "¿Seguro que quiere eliminarlo?"
       },
       "detail": {
-        "title": "Delivery Platform"
+        "title": "Plataforma de entrega"
       },
-      "name": "Name",
-      "entrepreneur": "Entrepreneur"
+      "name": "Nombre",
+      "entrepreneur": "Emprendimiento"
     }
   }
 }

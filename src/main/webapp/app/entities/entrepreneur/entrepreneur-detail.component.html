@@ -11,11 +11,17 @@
                 <div class="card-body">
                     <dl class="row-md jh-entity-details">
                         <dd>
-                            <div *ngIf="entrepreneur.picture" class="text-center">
-                                <a (click)="openFile(entrepreneur.pictureContentType, entrepreneur.picture)">
-                                    <img class="img-fluid"
-                                         [src]="'data:' + entrepreneur.pictureContentType + ';base64,' + entrepreneur.picture"/>
-                                </a>
+                            <div class="text-center">
+                                <img class="img-fluid"
+                                     *ngIf="entrepreneur.pictureContentType !==null"
+                                     [src]="'data:' + entrepreneur.pictureContentType + ';base64,' + entrepreneur.picture"/>
+
+                                <img class="img-fluid"
+                                     *ngIf="entrepreneur.pictureContentType ==null"
+                                     src="../../../content/images/lacusticos_products.jpg"/>
+
+
+
                             </div>
                         </dd>
                         <dd class="pt-3 pb-3 text-center">
@@ -52,6 +58,7 @@
                             <fa-icon icon="shapes"></fa-icon>&nbsp;
                         </button>
                         <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnDelivery' | translate }}"
+                                [routerLink]="['/entrepreneur', 'delivery-platform' ,entrepreneur.id]"
                                 class="btn btn-outline-success">
                             <fa-icon icon="truck"></fa-icon>&nbsp;
                         </button>

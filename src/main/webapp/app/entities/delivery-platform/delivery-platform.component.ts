@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDeliveryPlatform } from 'app/shared/model/delivery-platform.model';
 import { DeliveryPlatformService } from './delivery-platform.service';
 import { DeliveryPlatformDeleteDialogComponent } from './delivery-platform-delete-dialog.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'jhi-delivery-platform',
@@ -15,20 +16,38 @@ import { DeliveryPlatformDeleteDialogComponent } from './delivery-platform-delet
 export class DeliveryPlatformComponent implements OnInit, OnDestroy {
   deliveryPlatforms?: IDeliveryPlatform[];
   eventSubscriber?: Subscription;
+  collectionSize = 0;
 
   constructor(
     protected deliveryPlatformService: DeliveryPlatformService,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    protected activatedRoute: ActivatedRoute
   ) {}
 
   loadAll(): void {
-    this.deliveryPlatformService.query().subscribe((res: HttpResponse<IDeliveryPlatform[]>) => (this.deliveryPlatforms = res.body || []));
+    const id: string[] = this.activatedRoute.snapshot.paramMap.getAll('id');
+
+    if (this.activatedRoute.snapshot.paramMap.getAll('id').length !== 0) {
+      this.deliveryPlatformService
+        .findByEntrepreneur(Number(id))
+        .subscribe(
+          (res: HttpResponse<IDeliveryPlatform[]>) => (
+            (this.deliveryPlatforms = res.body || []), (this.collectionSize = Number(this.deliveryPlatforms?.length))
+          )
+        );
+    } else {
+      this.deliveryPlatformService.query().subscribe((res: HttpResponse<IDeliveryPlatform[]>) => (this.deliveryPlatforms = res.body || []));
+    }
   }
 
   ngOnInit(): void {
     this.loadAll();
     this.registerChangeInDeliveryPlatforms();
+  }
+
+  previousState(): void {
+    window.history.back();
   }
 
   ngOnDestroy(): void {

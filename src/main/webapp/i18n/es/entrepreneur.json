@@ -7,9 +7,9 @@
         "createOrEditLabel": "Emprendimiento",
         "notFound": "Ningún emprendimiento ha sido encontrado."
       },
-      "created": "Emprendimiento creado",
-      "updated": "Emprendimiento modificado",
-      "deleted": "Emprendimiento eliminado",
+      "created": "Emprendimiento creado.",
+      "updated": "Emprendimiento modificado.",
+      "deleted": "Emprendimiento eliminado.",
       "delete": {
         "question": "¿Seguro que quiere eliminarlo?"
       },

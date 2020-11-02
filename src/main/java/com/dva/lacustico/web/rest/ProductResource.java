@@ -1,8 +1,11 @@
 package com.dva.lacustico.web.rest;
 
 import com.dva.lacustico.domain.DeliveryPlatform;
+import com.dva.lacustico.domain.Entrepreneur;
 import com.dva.lacustico.domain.Product;
 import com.dva.lacustico.repository.ProductRepository;
+import com.dva.lacustico.security.AuthoritiesConstants;
+import com.dva.lacustico.security.SecurityUtils;
 import com.dva.lacustico.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -89,7 +92,14 @@ public class ProductResource {
     @GetMapping("/products")
     public List<Product> getAllProducts() {
         log.debug("REST request to get all Products");
-        return productRepository.findAll();
+        List<Product> result;
+
+        if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)){
+            result = productRepository.findAll();
+        }else{
+            result = productRepository.findByUserIsCurrentUser();
+        }
+        return result;
     }
 
     /**
