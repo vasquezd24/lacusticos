@@ -113,7 +113,7 @@ export class EntrepreneurDetailComponent implements OnInit {
   // onChoseLocation($event: { coords: { lat: any; lng: any; }; }): void{
 
   findProductByName(event: KeyboardEvent): void {
-    const name = event.target!.value;
+    const name = (event.target as HTMLInputElement).value;
     /* eslint-disable no-console */
     this.productService
       .findByNameByEntrepreneur(this.entrepreneur?.id, name)
