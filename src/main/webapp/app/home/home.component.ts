@@ -93,39 +93,28 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   //  Both
   find(event: KeyboardEvent): void {
-    const criteria = event.target!.value;
+    // (<HTMLInputElement>event.target)
+    // const criteria = event.target!.value;
+
+    const criteria = (event.target as HTMLInputElement).value;
     if (criteria !== '') {
       // si criteria es valido
-      // eslint-disable-next-line no-console
-      console.log('type' + this.typeSearch);
-      // eslint-disable-next-line no-console
-      console.log('filter' + this.filterSearch);
       if (this.typeSearch === false) {
         // si es emprendedor o producto
 
         if (this.filterSearch === false) {
           this.findProductByName(criteria);
-          // eslint-disable-next-line no-console
-          console.log('prod name');
         } else {
           this.findProductByCategory(criteria);
-          // eslint-disable-next-line no-console
-          console.log('prod category');
         }
       } else {
         if (this.filterSearch === false) {
           this.findEntrepreneurByName(criteria);
-          // eslint-disable-next-line no-console
-          console.log('ENTRE name');
         } else {
           this.findEntrepreneurByCategory(criteria);
-          // eslint-disable-next-line no-console
-          console.log('ENTRE category');
         }
       }
     } else {
-      // eslint-disable-next-line no-console
-      console.log('ELSE!');
       this.loadAllActiveEntrepreneur();
       this.loadAllActiveProducts();
     }
