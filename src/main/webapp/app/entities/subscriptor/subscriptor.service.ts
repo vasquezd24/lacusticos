@@ -12,6 +12,7 @@ type EntityArrayResponseType = HttpResponse<ISubscriptor[]>;
 @Injectable({ providedIn: 'root' })
 export class SubscriptorService {
   public resourceUrl = SERVER_API_URL + 'api/subscriptors';
+  public countURL = SERVER_API_URL + 'api/subscriptors/entrepreneur';
 
   constructor(protected http: HttpClient) {}
 
@@ -34,5 +35,10 @@ export class SubscriptorService {
 
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  findByEntrepreneur(id: number | undefined, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<ISubscriptor[]>(`${this.countURL}/${id}`, { params: options, observe: 'response' });
   }
 }

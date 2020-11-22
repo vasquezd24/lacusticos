@@ -2,13 +2,14 @@
     <h2 id="page-heading" class="text-center pb-4">
         <span jhiTranslate="lacusticoApp.deliveryPlatform.home.title">Delivery Platforms</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-delivery-platform"
+        <button id="jh-create-entity"
+                class="btn btn-outline-success float-right jh-create-entity create-delivery-platform"
                 [routerLink]="['/delivery-platform/new']">
             <fa-icon icon="plus"></fa-icon>
         </button>
         <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnBack' | translate }}"
                 (click)="previousState()"
-                class="btn btn-outline-success float-right jh-create-entity create-category">
+                class="btn btn-outline-primary float-right jh-create-entity create-category">
             <fa-icon icon="arrow-left"></fa-icon>&nbsp;
         </button>
     </h2>
@@ -40,11 +41,11 @@
                 </td>
                 <td class="text-right">
                     <div class="btn-group">
-                        <button type="submit"
+<!--                        <button type="submit"
                                 [routerLink]="['/delivery-platform', deliveryPlatform.id, 'view']"
                                 class="btn btn-info btn-sm">
                             <fa-icon icon="eye"></fa-icon>
-                        </button>
+                        </button>-->
 
                         <button type="submit"
                                 [routerLink]="['/delivery-platform', deliveryPlatform.id, 'edit']"

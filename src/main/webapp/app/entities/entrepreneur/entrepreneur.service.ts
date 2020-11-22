@@ -12,6 +12,9 @@ type EntityArrayResponseType = HttpResponse<IEntrepreneur[]>;
 @Injectable({ providedIn: 'root' })
 export class EntrepreneurService {
   public resourceUrl = SERVER_API_URL + 'api/entrepreneurs';
+  public activeURL = SERVER_API_URL + 'api/entrepreneurs/active';
+  public nameURL = SERVER_API_URL + 'api/entrepreneurs/name';
+  public categoryURL = SERVER_API_URL + 'api/entrepreneurs/category';
 
   constructor(protected http: HttpClient) {}
 
@@ -39,5 +42,19 @@ export class EntrepreneurService {
   findByCurrentUser(req?: any): Observable<HttpResponse<IEntrepreneur[]>> {
     const options = createRequestOption(req);
     return this.http.get<IEntrepreneur[]>(SERVER_API_URL + 'api/entrepreneurs-current', { params: options, observe: 'response' });
+  }
+
+  findAllActive(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IEntrepreneur[]>(`${this.activeURL}`, { params: options, observe: 'response' });
+  }
+  findAllActiveByName(name: string | undefined, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IEntrepreneur[]>(`${this.nameURL}/${name}`, { params: options, observe: 'response' });
+  }
+
+  findAllActiveByCategory(category: string | undefined, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IEntrepreneur[]>(`${this.categoryURL}/${category}`, { params: options, observe: 'response' });
   }
 }

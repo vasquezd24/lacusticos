@@ -43,12 +43,17 @@ import {
   faObjectGroup,
   faShapes,
   faGlobeAmericas,
+  faThumbtack,
+  faRedo,
+  faBriefcase,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 export const fontAwesomeIcons = [
+  faRedo,
   faInstagram,
+  faThumbtack,
   faFacebook,
   faGlobeAmericas,
   faUser,
@@ -95,4 +100,5 @@ export const fontAwesomeIcons = [
   faTruck,
   faObjectGroup,
   faShapes,
+  faBriefcase,
 ];

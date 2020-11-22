@@ -14,8 +14,8 @@ import { EntrepreneurUpdateComponent } from './entrepreneur-update.component';
 import { ProductComponent } from 'app/entities/product/product.component';
 import { ProductDetailComponent } from 'app/entities/product/product-detail.component';
 import { ProductResolve } from 'app/entities/product/product.route';
-import { DeliveryPlatformResolve } from 'app/entities/delivery-platform/delivery-platform.route';
 import { DeliveryPlatformComponent } from 'app/entities/delivery-platform/delivery-platform.component';
+import { LocationComponent } from 'app/entities/location/location.component';
 
 @Injectable({ providedIn: 'root' })
 export class EntrepreneurResolve implements Resolve<IEntrepreneur> {
@@ -56,7 +56,7 @@ export const entrepreneurRoute: Routes = [
       entrepreneur: EntrepreneurResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [],
       pageTitle: 'lacusticoApp.entrepreneur.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -104,7 +104,7 @@ export const entrepreneurRoute: Routes = [
       product: ProductResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [],
       pageTitle: 'lacusticoApp.product.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -113,11 +113,23 @@ export const entrepreneurRoute: Routes = [
     path: 'delivery-platform/:id',
     component: DeliveryPlatformComponent,
     resolve: {
-      product: DeliveryPlatformResolve,
+      product: EntrepreneurResolve,
     },
     data: {
       authorities: [Authority.USER],
       pageTitle: 'lacusticoApp.deliveryPlatform.home.title',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'location/:id',
+    component: LocationComponent,
+    resolve: {
+      product: EntrepreneurResolve,
+    },
+    data: {
+      authorities: [Authority.USER],
+      pageTitle: 'lacusticoApp.location.home.title',
     },
     canActivate: [UserRouteAccessService],
   },

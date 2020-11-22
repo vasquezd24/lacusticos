@@ -22,4 +22,6 @@ public interface DeliveryPlatformRepository extends JpaRepository<DeliveryPlatfo
 
     @Query("SELECT d from DeliveryPlatform d join Entrepreneur e on d.entrepreneur.id= e.id join User u on e.user.id = u.id where u.login=?#{principal.username}")
     List<DeliveryPlatform> findByUserIsCurrentUser();
+
+
 }

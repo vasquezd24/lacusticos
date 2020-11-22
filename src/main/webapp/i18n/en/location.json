@@ -4,14 +4,14 @@
       "home": {
         "title": "Locations",
         "createLabel": "Create a new Location",
-        "createOrEditLabel": "Create or edit a Location",
-        "notFound": "No Locations found"
+        "createOrEditLabel": "Location",
+        "notFound": "No locations found"
       },
-      "created": "A new Location is created with identifier {{ param }}",
-      "updated": "A Location is updated with identifier {{ param }}",
-      "deleted": "A Location is deleted with identifier {{ param }}",
+      "created": "Location created ",
+      "updated": "Location updated.",
+      "deleted": "Location deleted.",
       "delete": {
-        "question": "Are you sure you want to delete Location {{ id }}?"
+        "question": "Are you sure you want to delete id?"
       },
       "detail": {
         "title": "Location"
@@ -21,7 +21,9 @@
       "longitude": "Longitude",
       "details": "Details",
       "activated": "Activated",
-      "entrepreneur": "Entrepreneur"
+      "active": "Active",
+      "inactive": "Inactive",
+      "entrepreneur": "Entrepreneurship"
     }
   }
 }

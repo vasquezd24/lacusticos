@@ -42,15 +42,15 @@ describe('Location e2e test', () => {
 
     await promise.all([
       locationUpdatePage.setNameInput('name'),
-      locationUpdatePage.setLatitudeInput('latitude'),
-      locationUpdatePage.setLongitudeInput('longitude'),
+      locationUpdatePage.setLatitudeInput('5'),
+      locationUpdatePage.setLongitudeInput('5'),
       locationUpdatePage.setDetailsInput('details'),
       locationUpdatePage.entrepreneurSelectLastOption(),
     ]);
 
     expect(await locationUpdatePage.getNameInput()).to.eq('name', 'Expected Name value to be equals to name');
-    expect(await locationUpdatePage.getLatitudeInput()).to.eq('latitude', 'Expected Latitude value to be equals to latitude');
-    expect(await locationUpdatePage.getLongitudeInput()).to.eq('longitude', 'Expected Longitude value to be equals to longitude');
+    expect(await locationUpdatePage.getLatitudeInput()).to.eq('5', 'Expected latitude value to be equals to 5');
+    expect(await locationUpdatePage.getLongitudeInput()).to.eq('5', 'Expected longitude value to be equals to 5');
     expect(await locationUpdatePage.getDetailsInput()).to.eq('details', 'Expected Details value to be equals to details');
     const selectedActivated = locationUpdatePage.getActivatedInput();
     if (await selectedActivated.isSelected()) {

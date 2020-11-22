@@ -1,7 +1,10 @@
 package com.dva.lacustico.web.rest;
 
 import com.dva.lacustico.domain.Subscriptor;
+import com.dva.lacustico.domain.User;
 import com.dva.lacustico.repository.SubscriptorRepository;
+import com.dva.lacustico.repository.UserRepository;
+import com.dva.lacustico.service.MailService;
 import com.dva.lacustico.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -30,14 +33,19 @@ public class SubscriptorResource {
     private final Logger log = LoggerFactory.getLogger(SubscriptorResource.class);
 
     private static final String ENTITY_NAME = "subscriptor";
+    private final MailService mailService;
+
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
+    private final UserRepository userRepository;
 
     private final SubscriptorRepository subscriptorRepository;
 
-    public SubscriptorResource(SubscriptorRepository subscriptorRepository) {
+    public SubscriptorResource(SubscriptorRepository subscriptorRepository, MailService mailService, UserRepository userRepository) {
         this.subscriptorRepository = subscriptorRepository;
+        this.mailService = mailService;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -54,6 +62,8 @@ public class SubscriptorResource {
             throw new BadRequestAlertException("A new subscriptor cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Subscriptor result = subscriptorRepository.save(subscriptor);
+        mailService.sendSubscriptorMail(subscriptor.getEmail());
+        //mailService.sendNewProductMail(subscriptor.getEmail(),"PRUEBA 1");
         return ResponseEntity.created(new URI("/api/subscriptors/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -115,5 +125,11 @@ public class SubscriptorResource {
         log.debug("REST request to delete Subscriptor : {}", id);
         subscriptorRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping("/subscriptors/entrepreneur/{id}")
+    public List<Subscriptor> getSubscriptorsByEntrepreneur (@PathVariable Long id) {
+        log.debug("REST request to get Subscriptor : {}", id);
+        return subscriptorRepository.findSubscriptorsByEntrepreneur(id);
     }
 }

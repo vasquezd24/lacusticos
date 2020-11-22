@@ -8,8 +8,15 @@
       "lastname.placeholder": "Sus apellidos",
       "language": "Idioma",
       "button": "Guardar",
+      "deactivate": "Desactivar",
       "btnPassword": "Contraseña"
     },
+    "delete": {
+      "question": "¿Seguro que quiere desactivar su cuenta?",
+      "btnDeactivate": "Desactivar",
+      "tittleDeactivate": "Confirmar desactivación de cuenta"
+    },
+
     "messages": {
       "error": {
         "fail": "<strong>¡Ha ocurrido un error!</strong> Los ajustes no se han podido guardar.",

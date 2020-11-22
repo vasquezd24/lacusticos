@@ -10,14 +10,14 @@
     },
     {
       "fieldName": "latitude",
-      "fieldType": "String",
+      "fieldType": "Double",
       "fieldValidateRules": [
         "required"
       ]
     },
     {
       "fieldName": "longitude",
-      "fieldType": "String",
+      "fieldType": "Double",
       "fieldValidateRules": [
         "required"
       ]

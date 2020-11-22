@@ -24,6 +24,7 @@ export class ProductUpdateComponent implements OnInit {
   isSaving = false;
   categories: ICategory[] = [];
   entrepreneurs: IEntrepreneur[] = [];
+  imageHide = false;
 
   editForm = this.fb.group({
     id: [],
@@ -33,8 +34,8 @@ export class ProductUpdateComponent implements OnInit {
     productImage: [],
     productImageContentType: [],
     activated: [null, [Validators.required]],
-    category: [],
-    entrepreneur: [],
+    category: [null, [Validators.required]],
+    entrepreneur: [null, [Validators.required]],
   });
 
   constructor(
@@ -70,6 +71,12 @@ export class ProductUpdateComponent implements OnInit {
       category: product.category,
       entrepreneur: product.entrepreneur,
     });
+
+    if (this.editForm.get('productImageContentType')?.value === undefined || this.editForm.get('productImageContentType')?.value === null) {
+      this.imageHide = false;
+    } else {
+      this.imageHide = true;
+    }
   }
 
   byteSize(base64String: string): string {
@@ -81,6 +88,10 @@ export class ProductUpdateComponent implements OnInit {
   }
 
   setFileData(event: Event, field: string, isImage: boolean): void {
+    this.imageHide = true;
+    // eslint-disable-next-line no-console
+    console.log('dentro' + this.imageHide);
+
     this.dataUtils.loadFileToForm(event, this.editForm, field, isImage).subscribe(null, (err: JhiFileLoadError) => {
       this.eventManager.broadcast(
         new JhiEventWithContent<AlertError>('lacusticoApp.error', { ...err, key: 'error.file.' + err.key })
@@ -89,6 +100,7 @@ export class ProductUpdateComponent implements OnInit {
   }
 
   clearInputImage(field: string, fieldContentType: string, idInput: string): void {
+    this.imageHide = false;
     this.editForm.patchValue({
       [field]: null,
       [fieldContentType]: null,

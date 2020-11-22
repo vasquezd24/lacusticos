@@ -12,10 +12,13 @@
                 <div class="col-4 my-auto pr2">
                     <div class="form-group">
                          <div>
-                             <div>
-                                 <img class="img-fluid"
+                             <div >
+                                 <img class="img-fluid pb-5"
+                                      *ngIf="imageHide === false"
+                                      src="../../../content/images/lacusticos_products.jpg"/>
+                                 <img class="img-fluid pb-3"
                                      [src]="'data:' + editForm.get('productImageContentType')!.value + ';base64,' + editForm.get('productImage')!.value"
-                                     style="max-height: 100px;" *ngIf="editForm.get('productImage')!.value"
+                                     style="max-height: 350px;" *ngIf="editForm.get('productImage')!.value"
                                      alt="product image"/>
                              </div>
                             <div *ngIf="editForm.get('productImage')!.value" class="form-text text-danger clearfix text-center pt-2 pb-2">

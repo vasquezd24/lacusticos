@@ -2,13 +2,12 @@
     <div class="col-10">
         <div>
             <h1 class=" text-center pb-3" id="jhi-entrepreneur-heading">{{entrepreneur.name}}</h1>
-            <!--            <hr>-->
             <jhi-alert-error></jhi-alert-error>
 
         </div>
         <div class="row justify-content-center" style="max-height: 90%">
             <div class=" card col-3">
-                <div class="card-body">
+                <div class="card-body" >
                     <dl class="row-md jh-entity-details">
                         <dd>
                             <div class="text-center">
@@ -38,27 +37,46 @@
                             <span class="font-weight-bold" jhiTranslate="lacusticoApp.entrepreneur.phoneNumber2">Phone Number</span>
                             <span>{{ entrepreneur.phoneNumber }}</span>
                         </dd>
+                        <dd>
+                            <span class="font-weight-bold" jhiTranslate="lacusticoApp.entrepreneur.subscriptor">Subscribers</span>
+                            <span id="subscribers">{{subscribers}} </span>
+                        </dd>
                     </dl>
-                    <div class="text-center pt-3">
+                    <div class="text-center pt-3" [ngSwitch]="isAuthenticated()">
                         <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnBack' | translate }}"
                                 (click)="previousState()"
                                 class="btn btn-outline-primary">
                             <fa-icon icon="arrow-left"></fa-icon>&nbsp;
                         </button>
+                        <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnSubscribe' | translate }}"
+                                *ngSwitchCase="false"
+                                (click)="openSubscribeModal(entrepreneur)"
+                                class="btn btn-outline-success">
+                            <fa-icon icon="bell"></fa-icon>&nbsp;
+                        </button>
                         <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnEdit' | translate }}"
                                 [routerLink]="['/entrepreneur', entrepreneur.id, 'edit']"
-                                class="btn btn-outline-success">
+                                class="btn btn-outline-success"
+                                *ngSwitchCase="true" >
                             <fa-icon icon="pencil-alt"></fa-icon>&nbsp;
                         </button>
-                        <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnProduct' | translate }}"
+                        <button type="button" title="{{ 'lacusticoApp.entrepreneur.btnProduct' | translate }}"
                                 [routerLink]="['/entrepreneur', 'product',entrepreneur.id]"
-                                class="btn btn-outline-success">
+                                class="btn btn-outline-success"
+                                *ngSwitchCase="true" >
                             <fa-icon icon="shapes"></fa-icon>&nbsp;
                         </button>
-                        <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnDelivery' | translate }}"
+                        <button type="button" title="{{ 'lacusticoApp.entrepreneur.btnDelivery' | translate }}"
                                 [routerLink]="['/entrepreneur', 'delivery-platform' ,entrepreneur.id]"
-                                class="btn btn-outline-success">
+                                class="btn btn-outline-success"
+                                *ngSwitchCase="true" >
                             <fa-icon icon="truck"></fa-icon>&nbsp;
+                        </button>
+                        <button type="button" title="{{'lacusticoApp.entrepreneur.btnLocation' | translate}}"
+                                [routerLink]="['/entrepreneur', 'location' ,entrepreneur.id]"
+                                class="btn btn-outline-success"
+                                *ngSwitchCase="true" >
+                            <fa-icon icon="thumbtack"></fa-icon>&nbsp;
                         </button>
 
 
@@ -74,15 +92,10 @@
                             </ng-template>
                             <ng-template ngbTabContent>
                                 <div class="pt-3 row justify-content-center align-items-center">
-                                    <input type="text" class="form-control w-25 " name="search" id="search"
-                                           placeholder="{{ 'lacusticoApp.entrepreneur.search' | translate }}"
-                                           style="border: 1px solid rgba(0, 0, 0, 0.125); border-radius: 0.25rem;"/>
-                                    <button type="submit" title="Volver"
-                                            (click)="previousState()"
-                                            class="btn btn-outline-success">
-                                        <fa-icon icon="search"></fa-icon>&nbsp;
-                                    </button>
-
+                                    <input type="text" class="form-control w-40 text-center" name="search" id="search"
+                                           placeholder="{{ 'home.search' | translate }}"
+                                           style="border: 1px solid rgba(0, 0, 0, 0.125); border-radius: 0.25rem;"
+                                           (keyup)="findProductByName($event)"/>
                                 </div>
                                 <div id="no-products" *ngIf="products?.length === 0" class="pt-5 h4">
                                     <span
@@ -93,16 +106,18 @@
                                     <!-- Row -->
                                     <div class="row">
                                         <!-- column -->
-                                        <div class="col-lg-2 pt-3" *ngFor="let product of products; trackBy: trackId">
+                                        <div class="col-lg-3 pt-3" *ngFor="let product of products;trackBy: trackId">
                                             <div class="row">
                                                 <img class="card-img-top img-fluid col-12"
                                                      *ngIf="product.productImageContentType ==null"
                                                      src="../../../content/images/lacusticos_products.jpg"
-                                                     alt="Card image cap"><img/>
+                                                     alt="Card image cap"
+                                                     style="width: 80px; height: 180px;"><img/>
                                                 <img class="card-img-top img-fluid col-12"
                                                      *ngIf="product.productImageContentType !==null"
                                                      [src]="'data:' + product.productImageContentType + ';base64,' + product.productImage"
-                                                     alt="Card image cap"><img/>
+                                                     alt="Card image cap"
+                                                     style="width: 80px; height: 180px;"><img/>
                                             </div>
                                             <div class="pt-2 pb-2 pl-2 pr-2">
                                                 <h5 class="card-title text-center"
@@ -117,9 +132,10 @@
                                     </div>
                                     <!-- Row -->
                                 </div>
-                                <div class="row justify-content-center pt-2">
-                                    <ngb-pagination [pageSize] = "pageSize" [collectionSize]="collectionSize" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>
-                                </div>
+                                <!--<div class="row justify-content-center pt-2">
+                                    <ngb-pagination  *ngIf="products?.length !== 0" [pageSize]="pageSize" [collectionSize]="collectionSize"
+                                                    [(page)]="page" [boundaryLinks]="true"></ngb-pagination>
+                                </div>-->
                             </ng-template>
                         </ngb-tab>
                         <ngb-tab>
@@ -177,22 +193,34 @@
                                         </ng-container>
                                     </div>
                                 </div>
-
                             </ng-template>
                         </ngb-tab>
                         <ngb-tab>
                             <ng-template ngbTabTitle><span
                                 jhiTranslate="lacusticoApp.entrepreneur.titleLocation"></span></ng-template>
                             <ng-template ngbTabContent>
-                                <p class="p-t-20">Raw denim you probably haven't heard of them jean shorts Austin.
-                                    Nesciunt
-                                    tofu stumptown aliqua, retro synth
-                                    master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.
-                                    Reprehenderit butcher retro keffiyeh
-                                    dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid.
-                                    Aliquip placeat salvia cillum
-                                    iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi
-                                    qui.</p>
+                                <div id="no-result-location" *ngIf="locations?.length === 0" class="pt-5 h4">
+                                    <dd><span
+                                        jhiTranslate="lacusticoApp.location.home.notFound">No Locations found</span>
+                                    </dd>
+                                </div>
+                                    <ng-container>
+                                        <div id="map" class="pt-5 pb-3" *ngIf="locations?.length !==0">
+                                            <agm-map [latitude]="latitude"
+                                                     [longitude]="longitude"
+                                                     style="height: 500px"
+                                                     (mapClick)="onChoseLocation($event)">
+                                                <agm-marker
+                                                    *ngFor="let location of locations ;trackBy: trackId"
+                                                    [latitude]=convertToNumber(location.latitude)
+                                                    [longitude]=convertToNumber(location.longitude)>
+                                                    <agm-info-window class="text-center">
+                                                        <strong>{{location.name}}<br> {{location.details}}</strong>
+                                                    </agm-info-window>
+                                                </agm-marker>
+                                            </agm-map>
+                                        </div>
+                                    </ng-container>
                             </ng-template>
                         </ngb-tab>
                     </ngb-tabset>

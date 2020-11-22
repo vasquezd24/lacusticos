@@ -5,7 +5,7 @@
         "title": "Delivery Platforms",
         "createLabel": "Create a new Delivery Platform",
         "createOrEditLabel": "Delivery Platforms",
-        "notFound": "No Delivery Platforms found"
+        "notFound": "No delivery platforms found"
       },
       "created": "Delivery Platform created",
       "updated": "Delivery Platform updated",

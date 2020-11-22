@@ -12,12 +12,14 @@
                         <dl class="row-md jh-entity-details">
                             <dd>
                                 <div class="row">
-                                    <img class="card-img-top img-fluid col-12"
+                                    <img class="card-img-top  col-12"
                                          *ngIf="product.productImageContentType ==null"
+                                         style="height: 500px; width: 450px;"
                                          src="../../../content/images/lacusticos_products.jpg"
                                          alt="Producto"><img/>
 
-                                    <img class="card-img-top img-fluid col-12"
+                                    <img class="card-img-top  col-12"
+                                         style="height: 500x; width: 450px;"
                                          *ngIf="product.productImageContentType !==null"
                                          [src]="'data:' + product.productImageContentType + ';base64,' + product.productImage"
                                          alt="Producto"><img/>
@@ -58,14 +60,14 @@
                         </dl>
                 </div>
             </div>
-            <div class="text-center pb-2">
+            <div class="text-center pb-2" [ngSwitch]="isAuthenticated()" >
                 <button type="submit"
                         (click)="previousState()"
                         class="btn btn-outline-primary">
                     <fa-icon icon="arrow-left"></fa-icon>
                 </button>
 
-                <button type="button"
+                <button type="button" *ngSwitchCase="true"
                         [routerLink]="['/product', product.id, 'edit']"
                         class="btn btn-outline-success">
                     <fa-icon icon="pencil-alt"></fa-icon>

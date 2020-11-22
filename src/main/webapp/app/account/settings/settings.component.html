@@ -107,6 +107,10 @@
                         &nbsp;<span jhiTranslate="settings.form.button">Save</span>
                     </button>
 
+                    <button type="button" (click)="delete(account)" class="btn btn-outline-danger">
+                        &nbsp;<span jhiTranslate="settings.form.deactivate">Cancel Account</span>
+                    </button>
+
                     <button type="button" id="cancel-save" class="btn btn-outline-danger" (click)="previousState()">
                         &nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                     </button>

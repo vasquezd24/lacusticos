@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(LocationService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Location(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', false);
+      elemDefault = new Location(0, 'AAAAAAA', 0, 0, 'AAAAAAA', false);
     });
 
     describe('Service methods', () => {
@@ -55,8 +55,8 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             name: 'BBBBBB',
-            latitude: 'BBBBBB',
-            longitude: 'BBBBBB',
+            latitude: 1,
+            longitude: 1,
             details: 'BBBBBB',
             activated: true,
           },
@@ -76,8 +76,8 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             name: 'BBBBBB',
-            latitude: 'BBBBBB',
-            longitude: 'BBBBBB',
+            latitude: 1,
+            longitude: 1,
             details: 'BBBBBB',
             activated: true,
           },

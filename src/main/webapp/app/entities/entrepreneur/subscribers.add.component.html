@@ -1,0 +1,37 @@
+<form *ngIf="entrepreneur" name="subscribeForm" role="form" novalidate (ngSubmit)="subscribe()"
+      [formGroup]="subscribeForm">
+    <div class="modal-header">
+        <h4 class="modal-title" jhiTranslate="lacusticoApp.entrepreneur.subscribe.tittle">¡Suscríbete!</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="cancel()" style="outline: none">x
+        </button>
+    </div>
+
+    <div class="modal-body row justify-content-center">
+        <jhi-alert-error></jhi-alert-error>
+        <p class="text-center pr-2 pl-2" id="jhi-delete-entrepreneur-heading"
+           jhiTranslate="lacusticoApp.entrepreneur.subscribe.description"></p>
+        <div class="form-group row w-100 justify-content-center">
+            <input type="text" class="form-control text-center pb-2" name="email" id="field_email"
+                   formControlName="email"
+                   placeholder="{{ 'lacusticoApp.entrepreneur.subscribe.email' | translate }}"
+                   style="border: 1px solid rgba(0, 0, 0, 0.125); border-radius: 0.25rem; width: 50% !important;"/>
+            <div
+                *ngIf="subscribeForm.get('email')!.invalid && (subscribeForm.get('email')!.dirty || subscribeForm.get('email')!.touched)">
+                <small class="form-text text-danger text-center"
+                       *ngIf="subscribeForm.get('email')?.errors?.required" jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer text-center" style="display: block !important;">
+        <button type="submit" id="subscribeEmail" [disabled]="subscribeForm.invalid || isSaving"
+                class="btn btn-outline-success">
+            <span jhiTranslate="lacusticoApp.entrepreneur.subscribe.btnSubscribe">Delete</span>
+        </button>
+
+    </div>
+</form>

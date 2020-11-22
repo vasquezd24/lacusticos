@@ -8,9 +8,25 @@ import { EntrepreneurUpdateComponent } from './entrepreneur-update.component';
 import { EntrepreneurDeleteDialogComponent } from './entrepreneur-delete-dialog.component';
 import { entrepreneurRoute } from './entrepreneur.route';
 
+import { AgmCoreModule } from '@agm/core';
+import { SubscribersAddComponent } from 'app/entities/entrepreneur/subscribers.add.component';
+
 @NgModule({
-  imports: [LacusticoSharedModule, RouterModule.forChild(entrepreneurRoute)],
-  declarations: [EntrepreneurComponent, EntrepreneurDetailComponent, EntrepreneurUpdateComponent, EntrepreneurDeleteDialogComponent],
+  imports: [
+    LacusticoSharedModule,
+    RouterModule.forChild(entrepreneurRoute),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDmNfa5XLklQJ_EhNvuS4zEmQzJZOeqrZg',
+    }),
+  ],
+
+  declarations: [
+    EntrepreneurComponent,
+    EntrepreneurDetailComponent,
+    EntrepreneurUpdateComponent,
+    EntrepreneurDeleteDialogComponent,
+    SubscribersAddComponent,
+  ],
   entryComponents: [EntrepreneurDeleteDialogComponent],
 })
 export class LacusticoEntrepreneurModule {}

@@ -2,26 +2,28 @@
   "lacusticoApp": {
     "location": {
       "home": {
-        "title": "Locations",
+        "title": "Ubicaciones",
         "createLabel": "Crear nuevo Location",
-        "createOrEditLabel": "Crear o editar Location",
-        "notFound": "Ningún Locations encontrado"
+        "createOrEditLabel": "Ubicación",
+        "notFound": "Ningúna ubicación encontrada"
       },
-      "created": "Un nuevo Location ha sido creado con el identificador {{ param }}",
-      "updated": "Un Location ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Location ha sido eliminado con el identificador {{ param }}",
+      "created": "Ubicación creada.",
+      "updated": "Ubicación modificada.",
+      "deleted": "Ubicación eliminada.",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Location {{ id }}?"
+        "question": "¿Seguro que quiere eliminarlo?"
       },
       "detail": {
-        "title": "Location"
+        "title": "Ubicación"
       },
-      "name": "Name",
-      "latitude": "Latitude",
-      "longitude": "Longitude",
-      "details": "Details",
-      "activated": "Activated",
-      "entrepreneur": "Entrepreneur"
+      "name": "Nombre",
+      "latitude": "Latitud",
+      "longitude": "Longitud",
+      "details": "Detalles",
+      "activated": "Estado",
+      "active": "Activo",
+      "inactive": "Inactivo",
+      "entrepreneur": "Emprendimiento"
     }
   }
 }

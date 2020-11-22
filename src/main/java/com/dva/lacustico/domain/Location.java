@@ -26,11 +26,11 @@ public class Location implements Serializable {
 
     @NotNull
     @Column(name = "latitude", nullable = false)
-    private String latitude;
+    private Double latitude;
 
     @NotNull
     @Column(name = "longitude", nullable = false)
-    private String longitude;
+    private Double longitude;
 
     @NotNull
     @Column(name = "details", nullable = false)
@@ -66,29 +66,29 @@ public class Location implements Serializable {
         this.name = name;
     }
 
-    public String getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public Location latitude(String latitude) {
+    public Location latitude(Double latitude) {
         this.latitude = latitude;
         return this;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public String getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public Location longitude(String longitude) {
+    public Location longitude(Double longitude) {
         this.longitude = longitude;
         return this;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
@@ -154,8 +154,8 @@ public class Location implements Serializable {
         return "Location{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", latitude='" + getLatitude() + "'" +
-            ", longitude='" + getLongitude() + "'" +
+            ", latitude=" + getLatitude() +
+            ", longitude=" + getLongitude() +
             ", details='" + getDetails() + "'" +
             ", activated='" + isActivated() + "'" +
             "}";

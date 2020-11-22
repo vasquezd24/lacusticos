@@ -5,7 +5,7 @@
         "title": "Plataforma de entrega",
         "createLabel": "Crear nuevo Delivery Platform",
         "createOrEditLabel": "Plataforma de entrega",
-        "notFound": "Ninguna Plataforma de Entrega encontrada"
+        "notFound": "Ninguna plataforma de entrega encontrada"
       },
       "created": "Plataforma de entrega creada.",
       "updated": "Plataforma de entrega modificada.",

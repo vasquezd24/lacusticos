@@ -7,9 +7,14 @@ import { LocationDetailComponent } from './location-detail.component';
 import { LocationUpdateComponent } from './location-update.component';
 import { LocationDeleteDialogComponent } from './location-delete-dialog.component';
 import { locationRoute } from './location.route';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
-  imports: [LacusticoSharedModule, RouterModule.forChild(locationRoute)],
+  imports: [
+    LacusticoSharedModule,
+    RouterModule.forChild(locationRoute),
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyDmNfa5XLklQJ_EhNvuS4zEmQzJZOeqrZg' }),
+  ],
   declarations: [LocationComponent, LocationDetailComponent, LocationUpdateComponent, LocationDeleteDialogComponent],
   entryComponents: [LocationDeleteDialogComponent],
 })

@@ -1,7 +1,8 @@
 <div>
     <h2 id="page-heading" class="text-center pb-4">
         <span jhiTranslate="lacusticoApp.entrepreneur.home.title">Entrepreneurs</span>
-        <button id="jh-create-entity" class="btn btn-outline-success float-right jh-create-entity create-entrepreneur" [routerLink]="['/entrepreneur/new']">
+        <button id="jh-create-entity"
+                class="btn btn-outline-success float-right jh-create-entity create-entrepreneur" [routerLink]="['/entrepreneur/new']">
             <fa-icon icon="plus"></fa-icon>
         </button>
         <button type="submit" title="{{ 'lacusticoApp.entrepreneur.btnBack' | translate }}"
@@ -43,10 +44,12 @@
                 <td>{{ entrepreneur.phoneNumber }}</td>
                 <td><div *ngIf="entrepreneur.category">{{ entrepreneur.category?.description }}</div></td>
                 <td>
-                    <button class="btn btn-danger btn-sm" (click)="setActive(entrepreneur, true)" *ngIf="!entrepreneur.activated"
+                    <button class="btn btn-danger btn-sm" (click)="setActive(entrepreneur, true)"
+                            *ngIf="!entrepreneur.activated"
                             jhiTranslate="lacusticoApp.entrepreneur.inactive">Deactivated
                     </button>
-                    <button class="btn btn-success btn-sm" (click)="setActive(entrepreneur, false)" *ngIf="entrepreneur.activated"
+                    <button class="btn btn-success btn-sm" (click)="setActive(entrepreneur, false)"
+                            *ngIf="entrepreneur.activated"
                             jhiTranslate="lacusticoApp.entrepreneur.active">Activated
                     </button>
                 </td>

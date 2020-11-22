@@ -8,7 +8,13 @@
       "lastname.placeholder": "Your last name",
       "language": "Language",
       "button": "Save",
+      "deactivate": "Desactivar",
       "btnPassword": "Password"
+    },
+    "delete": {
+      "question": "Are you sure you want to deactivate your account?",
+      "btnDeactivate": "Deactivate",
+      "tittleDeactivate": "Confirm account deactivation"
     },
     "messages": {
       "error": {

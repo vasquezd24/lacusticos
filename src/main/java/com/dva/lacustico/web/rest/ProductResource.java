@@ -3,9 +3,13 @@ package com.dva.lacustico.web.rest;
 import com.dva.lacustico.domain.DeliveryPlatform;
 import com.dva.lacustico.domain.Entrepreneur;
 import com.dva.lacustico.domain.Product;
+import com.dva.lacustico.domain.Subscriptor;
+import com.dva.lacustico.repository.EntrepreneurRepository;
 import com.dva.lacustico.repository.ProductRepository;
+import com.dva.lacustico.repository.SubscriptorRepository;
 import com.dva.lacustico.security.AuthoritiesConstants;
 import com.dva.lacustico.security.SecurityUtils;
+import com.dva.lacustico.service.MailService;
 import com.dva.lacustico.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -32,6 +36,7 @@ import java.util.Optional;
 public class ProductResource {
 
     private final Logger log = LoggerFactory.getLogger(ProductResource.class);
+    private final MailService mailService;
 
     private static final String ENTITY_NAME = "product";
 
@@ -39,9 +44,17 @@ public class ProductResource {
     private String applicationName;
 
     private final ProductRepository productRepository;
+    private final SubscriptorRepository subscriptorRepository;
+    private final EntrepreneurRepository entrepreneurRepository;
 
-    public ProductResource(ProductRepository productRepository) {
+
+    public ProductResource(ProductRepository productRepository,MailService mailService,
+                           SubscriptorRepository subscriptorRepository,
+                           EntrepreneurRepository entrepreneurRepository) {
         this.productRepository = productRepository;
+        this.mailService = mailService;
+        this.subscriptorRepository = subscriptorRepository;
+        this.entrepreneurRepository = entrepreneurRepository;
     }
 
     /**
@@ -58,6 +71,12 @@ public class ProductResource {
             throw new BadRequestAlertException("A new product cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Product result = productRepository.save(product);
+        List<Subscriptor> list = subscriptorRepository.findSubscriptorsByEntrepreneur(product.getEntrepreneur().getId());
+
+        for (int i = 0; i < list.size(); i++) {
+            Entrepreneur entrepreneur = entrepreneurRepository.findEntrepreneurById(list.get(i).getEntrepreneur().getId());
+            mailService.sendNewProductMail(list.get(i).getEmail(), entrepreneur.getName());
+        }
         return ResponseEntity.created(new URI("/api/products/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -131,13 +150,37 @@ public class ProductResource {
 
     @GetMapping("/products/entrepreneur/{id}")
     public List<Product> getProductByEntrepreneur(@PathVariable Long id) {
-        log.debug("REST request to get Products by : {}", id);
+        log.debug("REST request to get active Products by entrepreneur : {}", id);
         return productRepository.findProductByEntrepreneur(id);
     }
 
     @GetMapping("/products/entrepreneur-all/{id}")
     public List<Product> getProductByEntrepreneurAll(@PathVariable Long id) {
-        log.debug("REST request to get Products by : {}", id);
+        log.debug("REST request to get Products by entrepreneur : {}", id);
         return productRepository.findProductByEntrepreneurAll(id);
+    }
+
+    @GetMapping("/products/entrepreneur/{id}/{name}")
+    public List<Product> getProductByNameByEntre(@PathVariable Long id, @PathVariable String name) {
+        log.debug("REST request to get Products by entrepreneur : {}", id);
+        return productRepository.findProductByNameByEntrepreneur(id, name);
+    }
+
+    @GetMapping("/products/active")
+    public List<Product> getActiveProduct() {
+        log.debug("REST request to get All Active Products");
+        return productRepository.findAllActive();
+    }
+
+    @GetMapping("/products/name/{name}")
+    public List<Product> getAllActiveProductByName(@PathVariable String name) {
+        log.debug("REST request to get Products by name : {}", name);
+        return productRepository.findAllActiveByName(name);
+    }
+
+    @GetMapping("/products/category/{category}")
+    public List<Product> getAllActiveProductByCategory(@PathVariable String category) {
+        log.debug("REST request to get Products by category : {}", category);
+        return productRepository.findAllActiveByCategory(category);
     }
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { JhiDataUtils } from 'ng-jhipster';
 
 import { IProduct } from 'app/shared/model/product.model';
+import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-product-detail',
@@ -11,7 +12,7 @@ import { IProduct } from 'app/shared/model/product.model';
 export class ProductDetailComponent implements OnInit {
   product: IProduct | null = null;
 
-  constructor(protected dataUtils: JhiDataUtils, protected activatedRoute: ActivatedRoute) {}
+  constructor(protected dataUtils: JhiDataUtils, protected activatedRoute: ActivatedRoute, private accountService: AccountService) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ product }) => (this.product = product));
@@ -27,5 +28,9 @@ export class ProductDetailComponent implements OnInit {
 
   previousState(): void {
     window.history.back();
+  }
+
+  isAuthenticated(): boolean {
+    return this.accountService.isAuthenticated();
   }
 }

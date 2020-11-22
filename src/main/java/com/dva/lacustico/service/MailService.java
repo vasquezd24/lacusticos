@@ -6,6 +6,7 @@ import io.github.jhipster.config.JHipsterProperties;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
+import java.util.Optional;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -31,6 +32,8 @@ public class MailService {
     private final Logger log = LoggerFactory.getLogger(MailService.class);
 
     private static final String USER = "user";
+
+    private static final String Entrepreneur = "entrepreneur";
 
     private static final String BASE_URL = "baseUrl";
 
@@ -102,5 +105,50 @@ public class MailService {
     public void sendPasswordResetMail(User user) {
         log.debug("Sending password reset email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "mail/passwordResetEmail", "email.reset.title");
+    }
+
+    @Async
+    public void sendSubscriptorMail(String user) {
+        log.debug("Sending subscription email to '{}'", user);
+        sendSubscriptionEmailFromTemplate(user, "mail/subscriptionEmail", "email.subscribe.title");
+    }
+
+    @Async
+    public void sendNewProductMail(String user, String entrepreneurName) {
+        log.debug("Sending subscription email to '{}'", user);
+        sendNewProductEmailFromTemplate(user, entrepreneurName,"mail/newProductEmail", "email.product.title");
+    }
+
+    @Async
+    public void sendSubscriptionEmailFromTemplate(String user, String templateName, String titleKey) {
+        if (user == null) {
+            log.debug("Email doesn't exist for user '{}'", user);
+            return;
+        }
+        Locale locale = Locale.forLanguageTag("es");
+        Context context = new Context(locale);
+        context.setVariable(USER, user);
+        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
+        sendEmail(user, subject, content, false, true);
+    }
+
+    @Async
+    public void sendNewProductEmailFromTemplate(String user, String entrepreneur, String templateName, String titleKey) {
+        checkEmail(user);
+        Locale locale = Locale.forLanguageTag("es");
+        Context context = new Context(locale);
+        context.setVariable(Entrepreneur, entrepreneur);
+        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
+        sendEmail(user, subject, content, false, true);
+    }
+
+    public void checkEmail(String email){
+        if (email == null) {
+            log.debug("Email doesn't exist for user '{}'", email);
+        }
     }
 }

@@ -1,7 +1,10 @@
 package com.dva.lacustico.web.rest;
 
 import com.dva.lacustico.domain.Location;
+import com.dva.lacustico.domain.Product;
 import com.dva.lacustico.repository.LocationRepository;
+import com.dva.lacustico.security.AuthoritiesConstants;
+import com.dva.lacustico.security.SecurityUtils;
 import com.dva.lacustico.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -88,7 +91,14 @@ public class LocationResource {
     @GetMapping("/locations")
     public List<Location> getAllLocations() {
         log.debug("REST request to get all Locations");
-        return locationRepository.findAll();
+        List<Location> result;
+
+        if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)){
+            result = locationRepository.findAll();
+        }else{
+            result = locationRepository.findByUserIsCurrentUser();
+        }
+        return result;
     }
 
     /**
@@ -115,5 +125,17 @@ public class LocationResource {
         log.debug("REST request to delete Location : {}", id);
         locationRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping("/locations/active/{id}")
+    public List<Location> getActiveLocationByEntrepreneur(@PathVariable Long id) {
+        log.debug("REST request to get Active Location by entrepreneur: {}", id);
+        return locationRepository.findLocationByEntrepreneurActive(id);
+    }
+
+    @GetMapping("/locations/entrepreneur/{id}")
+    public List<Location> getLocationByEntrepreneur(@PathVariable Long id) {
+        log.debug("REST request to get Location by entrepreneur : {}", id);
+        return locationRepository.findLocationByEntrepreneur(id);
     }
 }

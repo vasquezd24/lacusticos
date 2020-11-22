@@ -2,18 +2,21 @@
   "home": {
     "title": "Welcome to Lacusticos!",
     "subtitle": "This is your homepage",
-    "logged": {
-      "message": "You are logged in as user \"{{username}}\"."
-    },
-    "question": "If you have any question on JHipster:",
-    "link": {
-      "homepage": "JHipster homepage",
-      "stackoverflow": "JHipster on Stack Overflow",
-      "bugtracker": "JHipster bug tracker",
-      "chat": "JHipster public chat room",
-      "follow": "follow @jhipster on Twitter"
-    },
-    "like": "If you like JHipster, don't forget to give us a star on",
-    "github": "GitHub"
+    "product": "Products",
+    "entrepreneur": "Entrepreneurs",
+    "addEntrepreneur": "Add entrepreneur",
+    "listEntrepreneur": "List entreprenurs",
+    "addProduct": "Add product",
+    "listProduct": "List products",
+    "category": "Category",
+    "search": "What are we looking for today?",
+    "name": "Name",
+    "location": "Location",
+    "addLocation": "Add location",
+    "listLocation": "List locations",
+    "delivery": "Delivery Platform",
+    "addDelivery": "Add platform",
+    "listDelivery": "List platforms",
+    "category": "Category"
   }
 }

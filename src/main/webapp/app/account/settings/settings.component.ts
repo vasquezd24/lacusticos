@@ -5,6 +5,8 @@ import { JhiLanguageService } from 'ng-jhipster';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
 import { LANGUAGES } from 'app/core/language/language.constants';
+import { CancelAccountComponent } from 'app/account/settings/cancel-account.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'jhi-settings',
@@ -21,7 +23,12 @@ export class SettingsComponent implements OnInit {
     langKey: [undefined],
   });
 
-  constructor(private accountService: AccountService, private fb: FormBuilder, private languageService: JhiLanguageService) {}
+  constructor(
+    private accountService: AccountService,
+    private fb: FormBuilder,
+    private languageService: JhiLanguageService,
+    protected modalService: NgbModal
+  ) {}
 
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => {
@@ -59,5 +66,10 @@ export class SettingsComponent implements OnInit {
       }
       this.previousState();
     });
+  }
+
+  delete(account: Account): void {
+    const modalRef = this.modalService.open(CancelAccountComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.account = account;
   }
 }

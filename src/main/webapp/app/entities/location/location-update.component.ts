@@ -17,15 +17,15 @@ import { EntrepreneurService } from 'app/entities/entrepreneur/entrepreneur.serv
 export class LocationUpdateComponent implements OnInit {
   isSaving = false;
   entrepreneurs: IEntrepreneur[] = [];
+  latitude = 9.9333;
+  longitude = -84.0833;
 
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
-    latitude: [null, [Validators.required]],
-    longitude: [null, [Validators.required]],
     details: [null, [Validators.required]],
     activated: [null, [Validators.required]],
-    entrepreneur: [],
+    entrepreneur: [null, [Validators.required]],
   });
 
   constructor(
@@ -35,10 +35,16 @@ export class LocationUpdateComponent implements OnInit {
     private fb: FormBuilder
   ) {}
 
+  onChoseLocation($event: { coords: { lat: any; lng: any } }): void {
+    /* eslint-disable no-console */
+    this.latitude = $event.coords.lat;
+    this.longitude = $event.coords.lng;
+    /* eslint-disable no-console */
+  }
+
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ location }) => {
       this.updateForm(location);
-
       this.entrepreneurService.query().subscribe((res: HttpResponse<IEntrepreneur[]>) => (this.entrepreneurs = res.body || []));
     });
   }
@@ -47,12 +53,21 @@ export class LocationUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: location.id,
       name: location.name,
-      latitude: location.latitude,
-      longitude: location.longitude,
       details: location.details,
       activated: location.activated,
       entrepreneur: location.entrepreneur,
     });
+    if (location.latitude != null) {
+      this.latitude = Number(location.latitude);
+    }
+    if (location.longitude != null) {
+      this.longitude = Number(location.longitude);
+    }
+  }
+
+  convertToNumber(param: number | undefined): number {
+    const numb: number = Number(param) + 0;
+    return numb;
   }
 
   previousState(): void {
@@ -62,6 +77,9 @@ export class LocationUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const location = this.createFromForm();
+    location.latitude = this.latitude;
+    location.longitude = this.longitude;
+
     if (location.id !== undefined) {
       this.subscribeToSaveResponse(this.locationService.update(location));
     } else {
@@ -74,11 +92,11 @@ export class LocationUpdateComponent implements OnInit {
       ...new Location(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
-      latitude: this.editForm.get(['latitude'])!.value,
-      longitude: this.editForm.get(['longitude'])!.value,
       details: this.editForm.get(['details'])!.value,
       activated: this.editForm.get(['activated'])!.value,
       entrepreneur: this.editForm.get(['entrepreneur'])!.value,
+      latitude: this.latitude,
+      longitude: this.longitude,
     };
   }
 

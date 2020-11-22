@@ -49,4 +49,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT u FROM User u WHERE u.activated = true")
     List<User> findActiveUser ();
+
+    @Query("SELECT  u from User u where u.email = :email")
+    User findByEmail (@Param("email") String email);
 }

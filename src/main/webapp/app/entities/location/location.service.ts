@@ -12,6 +12,8 @@ type EntityArrayResponseType = HttpResponse<ILocation[]>;
 @Injectable({ providedIn: 'root' })
 export class LocationService {
   public resourceUrl = SERVER_API_URL + 'api/locations';
+  public activeLocation = SERVER_API_URL + 'api/locations/active';
+  public entreLocation = SERVER_API_URL + 'api/locations/entrepreneur';
 
   constructor(protected http: HttpClient) {}
 
@@ -34,5 +36,14 @@ export class LocationService {
 
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+  findActiveLocationByEntrepreneur(id: number | undefined, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<ILocation[]>(`${this.activeLocation}/${id}`, { params: options, observe: 'response' });
+  }
+
+  findByEntrepreneur(id: number | undefined, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<ILocation[]>(`${this.entreLocation}/${id}`, { params: options, observe: 'response' });
   }
 }

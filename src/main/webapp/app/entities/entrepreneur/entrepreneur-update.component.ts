@@ -24,6 +24,7 @@ export class EntrepreneurUpdateComponent implements OnInit {
   isSaving = false;
   categories: ICategory[] = [];
   users: IUser[] = [];
+  imageHide = false;
 
   editForm = this.fb.group({
     id: [],
@@ -38,7 +39,7 @@ export class EntrepreneurUpdateComponent implements OnInit {
     facebookPage: [],
     instagramPage: [],
     activated: [null, [Validators.required]],
-    category: [],
+    category: [null, [Validators.required]],
     user: [],
   });
 
@@ -80,6 +81,12 @@ export class EntrepreneurUpdateComponent implements OnInit {
       category: entrepreneur.category,
       user: entrepreneur.user,
     });
+
+    if (this.editForm.get('pictureContentType')?.value === undefined || this.editForm.get('pictureContentType')?.value === null) {
+      this.imageHide = false;
+    } else {
+      this.imageHide = true;
+    }
   }
 
   byteSize(base64String: string): string {
@@ -91,6 +98,7 @@ export class EntrepreneurUpdateComponent implements OnInit {
   }
 
   setFileData(event: Event, field: string, isImage: boolean): void {
+    this.imageHide = true;
     this.dataUtils.loadFileToForm(event, this.editForm, field, isImage).subscribe(null, (err: JhiFileLoadError) => {
       this.eventManager.broadcast(
         new JhiEventWithContent<AlertError>('lacusticoApp.error', { ...err, key: 'error.file.' + err.key })
@@ -99,6 +107,8 @@ export class EntrepreneurUpdateComponent implements OnInit {
   }
 
   clearInputImage(field: string, fieldContentType: string, idInput: string): void {
+    this.imageHide = false;
+
     this.editForm.patchValue({
       [field]: null,
       [fieldContentType]: null,

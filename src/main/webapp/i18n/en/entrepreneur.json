@@ -1,6 +1,13 @@
 {
   "lacusticoApp": {
     "entrepreneur": {
+      "subscribe": {
+        "tittle": "Subscribe!",
+        "description": "By subscribing you will receive email notifications about this entrepreneurship.",
+        "email": "Enter your email",
+        "btnSubscribe": "Subscribe"
+      },
+
       "home": {
         "title": "Entrepreneurship",
         "createLabel": "Create a new Entrepreneur",
@@ -31,7 +38,7 @@
       "category": "Category",
       "category2": "Category:",
       "user": "User",
-      "subscriptor": "Subscriptor",
+      "subscriptor": "Subscribers:",
       "active": "Active",
       "inactive": "Inactive",
       "titlePlatf": "Delivery Platforms",
@@ -44,7 +51,9 @@
       "btnBack": "Back",
       "btnEdit": "Edit",
       "btnProduct": "Products",
-      "btnDelivery": "Delivery Platforms"
+      "btnDelivery": "Delivery Platforms",
+      "btnLocation": "Locations",
+      "btnSubscribe": "Subscribe"
     }
   }
 }

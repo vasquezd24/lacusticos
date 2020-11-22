@@ -1,29 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}" lang="es">
 <head>
-    <title th:text="#{email.activation.title}">Activación de cuenta - Lacustico</title>
+    <title th:text="#{email.product.title}">Subscription complete - Lacusticos</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="icon" th:href="@{|${baseUrl}/favicon.ico|}"/>
 </head>
-<!--
-    <body>
-        <p th:text="#{email.activation.greeting(${user.login})}">
-            Dear
-        </p>
-        <p th:text="#{email.activation.text1}">
-            Your JHipster account has been created, please click on the URL below to activate it:
-        </p>
-        <p>
-            <a th:with="url=(@{|${baseUrl}/account/activate?key=${user.activationKey}|})" th:href="${url}"
-            th:text="${url}">Activation link</a>
-        </p>
-        <p>
-            <span th:text="#{email.activation.text2}">Regards, </span>
-            <br/>
-            <em th:text="#{email.signature}">JHipster.</em>
-        </p>
-    </body>
--->
 
 <body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #f1f1f1;">
 <center style="width: 100%; background-color: #f1f1f1;">
@@ -40,7 +21,7 @@
                         <tr>
                             <td class="h1_color" style="text-align: center;">
                                 <h1 style="color: #ff5e5b; font-size: 34px;font-weight: 700;font-family: 'Lato', sans-serif;"
-                                    th:text="#{email.title}"></h1>
+                                    th:text="#{email.product.title2}"></h1>
                             </td>
                         </tr>
                     </table>
@@ -61,12 +42,7 @@
                             <td>
                                 <div style="padding: 0 2.5em; text-align: center;">
                                     <h2 style="color: #000000; font-size: 35px; margin-bottom: 0; font-weight: 400;line-height: 1.4;"
-                                        th:text="#{email.activation.text1}">Ingresa al siguiente enlace para activar tu
-                                        cuenta</h2>
-                                    <p><a
-                                        style=" padding: 15px 25px;Display: inline-block;border-radius: 10px;background: #00A08A;color: #ffffff;font-size:20px;"
-                                        th:with="url=(@{|${baseUrl}/account/activate?key=${user.activationKey}|})"
-                                        th:href="${url}" th:text="#{ 'email.button' }" ></a></p>
+                                        th:text="#{email.product.text1 (${entrepreneur})}">Thank you for supporting national entrepreneurs</h2>
                                     <h3 style="padding: 1em 0 0 0; font-size: 24px;font-weight: 300; color: #000000;"
                                         th:text="#{email.signature}"></h3>
                                 </div>

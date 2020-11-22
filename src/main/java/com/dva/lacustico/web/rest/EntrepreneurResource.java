@@ -2,6 +2,7 @@ package com.dva.lacustico.web.rest;
 
 import com.dva.lacustico.domain.Authority;
 import com.dva.lacustico.domain.Entrepreneur;
+import com.dva.lacustico.domain.Product;
 import com.dva.lacustico.domain.User;
 import com.dva.lacustico.repository.EntrepreneurRepository;
 import com.dva.lacustico.repository.ProductRepository;
@@ -181,6 +182,24 @@ public class EntrepreneurResource {
                 login = (String) authentication.getPrincipal();
 
         return login;
+    }
+
+    @GetMapping("/entrepreneurs/active")
+    public List<Entrepreneur> getEntrepreneur() {
+        log.debug("REST request to get All active Entrepreneur" );
+         return entrepreneurRepository.findAllActive();
+    }
+
+    @GetMapping("/entrepreneurs/name/{name}")
+    public List<Entrepreneur> getAllActiveEntrepreneurByName(@PathVariable String name) {
+        log.debug("REST request to get Entrepreneur by name : {}", name);
+        return entrepreneurRepository.findAllActiveByName(name);
+    }
+
+    @GetMapping("/entrepreneurs/category/{category}")
+    public List<Entrepreneur> getAllActiveEntreprenurByCategory(@PathVariable String category) {
+        log.debug("REST request to get Entrepreneur by category : {}", category);
+        return entrepreneurRepository.findAllActiveByCategory(category);
     }
 
 }

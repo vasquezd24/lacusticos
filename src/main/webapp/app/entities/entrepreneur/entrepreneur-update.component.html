@@ -11,10 +11,15 @@
                     <div class="form-group">
                         <div>
                             <div>
-                                <img class="img-fluid"
+                                <img class="img-fluid pb-5"
+                                     *ngIf="imageHide === false"
+                                     src="../../../content/images/lacusticos_products.jpg"/>
+                                <img class="img-fluid pb-3"
+                                     style="max-height: 350px;"
                                      [src]="'data:' + editForm.get('pictureContentType')!.value + ';base64,' + editForm.get('picture')!.value"
                                      *ngIf="editForm.get('picture')!.value"
                                      alt="entrepreneur image"/>
+
                             </div>
                             <div *ngIf="editForm.get('picture')!.value" class="form-text text-danger clearfix text-center pt-2 pb-2">
                                 <button type="button"
