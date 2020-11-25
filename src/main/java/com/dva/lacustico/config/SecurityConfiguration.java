@@ -63,7 +63,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(problemSupport)
         .and()
             .headers()
-            .contentSecurityPolicy("default-src 'self'; frame-src 'self' data:; script-src-elem maps.googleapis.com 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: maps.gstatic.com *.googleapis.com *.ggpht; data:; font-src 'self' data:; ")
+            .contentSecurityPolicy("default-src 'self' 'unsafe-eval'; frame-src 'self' data:; script-src-elem maps.googleapis.com 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: maps.gstatic.com *.googleapis.com *.ggpht; data:; font-src 'self' data:; ")
         .and()
             .referrerPolicy(ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN)
         .and()
