@@ -37,9 +37,11 @@ export class LocationUpdateComponent implements OnInit {
 
   onChoseLocation($event: { coords: { lat: any; lng: any } }): void {
     /* eslint-disable no-console */
+
     this.latitude = $event.coords.lat;
     this.longitude = $event.coords.lng;
     /* eslint-disable no-console */
+    console.log(this.latitude, ' + ', this.longitude);
   }
 
   ngOnInit(): void {
